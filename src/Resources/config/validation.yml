@@ -1,0 +1,2 @@
+imports:
+  - { resource: constraint/article.yml }

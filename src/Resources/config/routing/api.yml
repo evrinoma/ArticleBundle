@@ -1,0 +1,3 @@
+article_api:
+  resource: "@EvrinomaArticleBundle/Controller/ArticleApiController.php"
+  type: annotation

@@ -1,0 +1,2 @@
+article:
+    resource: "@EvrinomaArticleBundle/Resources/config/routes.yml"

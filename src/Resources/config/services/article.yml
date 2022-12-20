@@ -1,0 +1,103 @@
+services:
+  Evrinoma\ArticleBundle\Controller\ArticleApiController:
+    alias: evrinoma.article.api.controller
+    public: true
+
+  evrinoma.article.api.controller:
+    class: Evrinoma\ArticleBundle\Controller\ArticleApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.article.facade'
+    autowire: true
+
+  evrinoma.article.facade:
+    class: Evrinoma\ArticleBundle\Facade\Article\Facade
+    arguments:
+      - '@evrinoma.article.command.manager'
+      - '@evrinoma.article.query.manager'
+      - '@evrinoma.article.adaptor'
+    autowire: true
+
+  Evrinoma\ArticleBundle\Facade\Article\FacadeInterface:
+    alias: evrinoma.article.facade
+
+  evrinoma.article.factory:
+    class: Evrinoma\ArticleBundle\Factory\ArticleFactory
+    public: true
+    arguments:
+
+  evrinoma.article.orm.repository:
+    class: Evrinoma\ArticleBundle\Repository\Orm\Article\ArticleRepository
+    public: true
+    arguments:
+
+  evrinoma.article.command.manager:
+    class: Evrinoma\ArticleBundle\Manager\CommandManager
+    arguments:
+      - '@evrinoma.article.validator'
+      - '@evrinoma.article.repository'
+      - '@evrinoma.article.factory'
+      - '@evrinoma.article.command.mediator'
+
+  Evrinoma\ArticleBundle\Manager\CommandManagerInterface:
+    alias: evrinoma.article.command.manager
+
+  evrinoma.article.query.manager:
+    class: Evrinoma\ArticleBundle\Manager\QueryManager
+    arguments:
+      - '@evrinoma.article.repository'
+
+  Evrinoma\ArticleBundle\Manager\QueryManagerInterface:
+    alias: evrinoma.article.query.manager
+    
+  evrinoma.article.validator:
+    class: Evrinoma\ArticleBundle\Validator\ArticleValidator
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\Validator\ArticleValidator:
+    alias: evrinoma.article.validator
+
+  evrinoma.article.query.orm.mediator:
+    class: Evrinoma\ArticleBundle\Mediator\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\Mediator\Orm\QueryMediator:
+    alias: evrinoma.article.query.orm.mediator
+
+  evrinoma.article.command.mediator:
+    class: Evrinoma\ArticleBundle\Mediator\CommandMediator
+    public: true
+    arguments:
+      - '@evrinoma.article.system.file_system'
+
+  Evrinoma\ArticleBundle\Mediator\CommandMediator:
+    alias: evrinoma.article.command.mediator
+
+  Evrinoma\ArticleBundle\Mediator\CommandMediatorInterface:
+    alias: evrinoma.article.command.mediator
+
+  evrinoma.article.pre.validator:
+    class: Evrinoma\ArticleBundle\PreValidator\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\PreValidator\DtoPreValidator:
+    alias: evrinoma.article.pre.validator
+
+  Evrinoma\ArticleBundle\PreValidator\DtoPreValidatorInterface:
+    alias: evrinoma.article.pre.validator
+
+  evrinoma.article.system.file_system:
+    class: Evrinoma\ArticleBundle\System\FileSystem
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\System\FileSystem:
+    alias: evrinoma.article.system.file_system
+
+  Evrinoma\ArticleBundle\System\FileSystemInterface:
+    alias: evrinoma.article.system.file_system

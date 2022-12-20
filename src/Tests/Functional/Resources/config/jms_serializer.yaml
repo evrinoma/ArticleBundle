@@ -1,0 +1,6 @@
+jms_serializer:
+  metadata:
+    directories:
+      ArticleBundle:
+        namespace_prefix: "Evrinoma\\ArticleBundle"
+        path: '%kernel.root_dir%/Resources/config/serializer/ArticleBundle'

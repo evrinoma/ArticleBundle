@@ -1,0 +1,30 @@
+Evrinoma\ArticleBundle\Model\Article\AbstractArticle:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    createdAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+    updatedAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+    active:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    body:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    title:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    position:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    image:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    preview:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true

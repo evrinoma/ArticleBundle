@@ -1,0 +1,9 @@
+services:
+  evrinoma.article.test.functional.action.article:
+    class: Evrinoma\ArticleBundle\Tests\Functional\Action\BaseArticle
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\Tests\Functional\Action\BaseArticle:
+    alias: evrinoma.article.test.functional.action.article
+    public: true

@@ -1,0 +1,5 @@
+services:
+  evrinoma.article.fixtures.article:
+    class: Evrinoma\ArticleBundle\Fixtures\ArticleFixtures
+    tags:
+      - { name: doctrine.fixture.orm }
