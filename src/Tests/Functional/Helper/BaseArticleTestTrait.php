@@ -26,12 +26,12 @@ trait BaseArticleTestTrait
 
         file_put_contents($path, 'my_file');
 
-        $fileImage = new UploadedFile($path, 'my_file');
-        $filePreview = new UploadedFile($path, 'my_file');
+        $fileImage = $fileAttachment = $filePreview = new UploadedFile($path, 'my_file');
 
         static::$files = [
             ArticleApiDtoInterface::IMAGE => $fileImage,
             ArticleApiDtoInterface::PREVIEW => $filePreview,
+            ArticleApiDtoInterface::ATTACHMENT => $fileAttachment,
         ];
     }
 

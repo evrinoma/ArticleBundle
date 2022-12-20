@@ -22,7 +22,6 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\ImageInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PreviewInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
-use Evrinoma\DtoCommon\ValueObject\Immutable\UrlInterface;
 
 interface ArticleApiDtoInterface extends DtoInterface, IdInterface, AttachmentInterface, TitleInterface, BodyInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface
 {

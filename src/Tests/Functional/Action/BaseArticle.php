@@ -21,7 +21,6 @@ use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Body;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Id;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Position;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Title;
-use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Url;
 use Evrinoma\TestUtilsBundle\Action\AbstractServiceTest;
 use Evrinoma\TestUtilsBundle\Browser\ApiBrowserTestInterface;
 use Evrinoma\UtilsBundle\Model\ActiveModel;

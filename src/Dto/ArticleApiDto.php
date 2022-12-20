@@ -23,7 +23,6 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleTrait;
-use Evrinoma\DtoCommon\ValueObject\Mutable\UrlTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface

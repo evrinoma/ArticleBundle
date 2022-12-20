@@ -23,7 +23,6 @@ use Evrinoma\UtilsBundle\Entity\ImageTrait;
 use Evrinoma\UtilsBundle\Entity\PositionTrait;
 use Evrinoma\UtilsBundle\Entity\PreviewTrait;
 use Evrinoma\UtilsBundle\Entity\TitleTrait;
-use Evrinoma\UtilsBundle\Entity\UrlTrait;
 
 /**
  * @ORM\MappedSuperclass

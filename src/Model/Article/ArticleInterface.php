@@ -22,7 +22,6 @@ use Evrinoma\UtilsBundle\Entity\ImageInterface;
 use Evrinoma\UtilsBundle\Entity\PositionInterface;
 use Evrinoma\UtilsBundle\Entity\PreviewInterface;
 use Evrinoma\UtilsBundle\Entity\TitleInterface;
-use Evrinoma\UtilsBundle\Entity\UrlInterface;
 
 interface ArticleInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, BodyInterface, TitleInterface, PositionInterface, PreviewInterface, ImageInterface, AttachmentInterface
 {
