@@ -103,8 +103,8 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
     }
 
     /**
-     * @Rest\Post("/api/article/type/save", options={"expose": true}, name="api_article_type_save")
-     * @OA\Post(
+     * @Rest\Put("/api/article/type/save", options={"expose": true}, name="api_article_type_save")
+     * @OA\Put(
      *     tags={"article"},
      *     description="the method perform save article type for current entity",
      *     @OA\RequestBody(

@@ -55,7 +55,6 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
     public function onDelete(DtoInterface $dto, $entity): void
     {
         $entity
-            ->setUpdatedAt(new \DateTimeImmutable())
             ->setActiveToDelete();
     }
 

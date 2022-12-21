@@ -52,14 +52,14 @@ trait BaseArticleTestTrait
         return $this->post($query);
     }
 
-    protected function createConstraintBlankName(): array
+    protected function createConstraintBlankTitle(): array
     {
         $query = static::getDefault([ArticleApiDtoInterface::TITLE => '']);
 
         return $this->post($query);
     }
 
-    protected function createConstraintBlankUrl(): array
+    protected function createConstraintBlankBody(): array
     {
         $query = static::getDefault([ArticleApiDtoInterface::BODY => '']);
 

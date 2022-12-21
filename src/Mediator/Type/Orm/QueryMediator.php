@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Mediator\Type\Orm;
 
 use Evrinoma\ArticleBundle\Dto\TypeApiDtoInterface;
-use Evrinoma\ArticleBundle\Mediator\Article\QueryMediatorInterface;
+use Evrinoma\ArticleBundle\Mediator\Type\QueryMediatorInterface;
 use Evrinoma\ArticleBundle\Repository\AliasInterface;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\UtilsBundle\Mediator\AbstractQueryMediator;

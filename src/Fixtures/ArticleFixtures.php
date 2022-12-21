@@ -139,6 +139,6 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
 
     public function getOrder()
     {
-        return 0;
+        return 100;
     }
 }

@@ -207,10 +207,10 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
         $this->postWrong();
         $this->testResponseStatusUnprocessable();
 
-        $this->createConstraintBlankName();
+        $this->createConstraintBlankTitle();
         $this->testResponseStatusUnprocessable();
 
-        $this->createConstraintBlankUrl();
+        $this->createConstraintBlankBody();
         $this->testResponseStatusUnprocessable();
     }
 }

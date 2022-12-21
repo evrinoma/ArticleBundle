@@ -3,3 +3,8 @@ services:
     class: Evrinoma\ArticleBundle\Fixtures\ArticleFixtures
     tags:
       - { name: doctrine.fixture.orm }
+
+  evrinoma.article.fixtures.type:
+    class: Evrinoma\ArticleBundle\Fixtures\TypeFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

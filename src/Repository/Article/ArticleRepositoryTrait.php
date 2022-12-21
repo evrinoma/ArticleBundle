@@ -52,10 +52,6 @@ trait ArticleRepositoryTrait
      */
     public function remove(ArticleInterface $article): bool
     {
-        $article
-            ->setUpdatedAt(new \DateTimeImmutable())
-            ->setActiveToDelete();
-
         return true;
     }
 

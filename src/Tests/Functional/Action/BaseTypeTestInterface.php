@@ -11,10 +11,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Evrinoma\ArticleBundle\Fixtures;
+namespace Evrinoma\ArticleBundle\Tests\Functional\Action;
 
-interface FixtureInterface
+interface BaseTypeTestInterface
 {
-    public const ARTICLE_FIXTURES = 'ARTICLE_FIXTURES';
-    public const TYPE_FIXTURES = 'TYPE_FIXTURES';
 }

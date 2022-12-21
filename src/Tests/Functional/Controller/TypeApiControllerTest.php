@@ -21,9 +21,9 @@ use Psr\Container\ContainerInterface;
 /**
  * @group functional
  */
-final class ApiControllerTest extends AbstractFunctionalTest
+final class TypeApiControllerTest extends AbstractFunctionalTest
 {
-    protected string $actionServiceName = 'evrinoma.article.test.functional.action.article';
+    protected string $actionServiceName = 'evrinoma.article.test.functional.action.type';
 
     protected function getActionService(ContainerInterface $container): ActionTestInterface
     {
@@ -32,6 +32,6 @@ final class ApiControllerTest extends AbstractFunctionalTest
 
     public static function getFixtures(): array
     {
-        return [FixtureInterface::ARTICLE_FIXTURES];
+        return [FixtureInterface::TYPE_FIXTURES];
     }
 }

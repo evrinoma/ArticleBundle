@@ -1,0 +1,27 @@
+Evrinoma\ArticleBundle\Model\Type\AbstractType:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [
+          API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE,
+          API_GET_ARTICLE_TYPE, API_POST_ARTICLE_TYPE, API_PUT_ARTICLE_TYPE,
+      ]
+      expose: true
+    brief:
+      groups: [
+          API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE,
+          API_GET_ARTICLE_TYPE, API_POST_ARTICLE_TYPE, API_PUT_ARTICLE_TYPE,
+      ]
+      expose: true
+    description:
+      groups: [
+          API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE,
+          API_GET_ARTICLE_TYPE, API_POST_ARTICLE_TYPE, API_PUT_ARTICLE_TYPE,
+      ]
+      expose: true
+    active:
+      groups: [
+          API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE,
+          API_GET_ARTICLE_TYPE, API_POST_ARTICLE_TYPE, API_PUT_ARTICLE_TYPE,
+      ]
+      expose: true

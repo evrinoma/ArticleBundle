@@ -26,7 +26,6 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         $entity
             ->setDescription($dto->getDescription())
             ->setBrief($dto->getBrief())
-            ->setUpdatedAt(new \DateTimeImmutable())
             ->setActive($dto->getActive());
 
         return $entity;
@@ -35,7 +34,6 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
     public function onDelete(DtoInterface $dto, $entity): void
     {
         $entity
-            ->setUpdatedAt(new \DateTimeImmutable())
             ->setActiveToDelete();
     }
 
@@ -45,7 +43,6 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         $entity
             ->setDescription($dto->getDescription())
             ->setBrief($dto->getBrief())
-            ->setCreatedAt(new \DateTimeImmutable())
             ->setActiveToActive();
 
         return $entity;

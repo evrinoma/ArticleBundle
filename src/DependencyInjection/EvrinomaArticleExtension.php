@@ -16,12 +16,13 @@ namespace Evrinoma\ArticleBundle\DependencyInjection;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Complex\ArticlePass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\ArticlePass as PropertyArticlePass;
 use Evrinoma\ArticleBundle\Dto\ArticleApiDto;
+use Evrinoma\ArticleBundle\Dto\TypeApiDto;
 use Evrinoma\ArticleBundle\Entity\Article\BaseArticle;
+use Evrinoma\ArticleBundle\Entity\Type\BaseType;
 use Evrinoma\ArticleBundle\EvrinomaArticleBundle;
 use Evrinoma\ArticleBundle\Factory\Article\Factory as ArticleFactory;
 use Evrinoma\ArticleBundle\Mediator\Article\QueryMediatorInterface as ArticleQueryMediatorInterface;
-use Evrinoma\ArticleBundle\Repository\Article\ArticleCommandRepositoryInterface;
-use Evrinoma\ArticleBundle\Repository\Article\ArticleQueryRepositoryInterface;
+use Evrinoma\ArticleBundle\Mediator\Type\QueryMediatorInterface as TypeQueryMediatorInterface;
 use Evrinoma\UtilsBundle\Adaptor\AdaptorRegistry;
 use Evrinoma\UtilsBundle\DependencyInjection\HelperTrait;
 use Evrinoma\UtilsBundle\Handler\BaseHandler;
@@ -97,6 +98,7 @@ class EvrinomaArticleExtension extends Extension
         }
 
         $this->wireMediator($container, ArticleQueryMediatorInterface::class, $config['db_driver'], 'article');
+        $this->wireMediator($container, TypeQueryMediatorInterface::class, $config['db_driver'], 'type');
 
         $this->remapParametersNamespaces(
             $container,
@@ -111,11 +113,14 @@ class EvrinomaArticleExtension extends Extension
 
         if ($registry && isset(self::$doctrineDrivers[$config['db_driver']])) {
             $this->wireRepository($container, $registry, ArticleQueryMediatorInterface::class, 'article', $config['entity'], $config['db_driver']);
+            $this->wireRepository($container, $registry, TypeQueryMediatorInterface::class, 'type', BaseType::class, $config['db_driver']);
         }
 
         $this->wireController($container, 'article', $config['dto']);
+        $this->wireController($container, 'type', TypeApiDto::class);
 
         $this->wireValidator($container, 'article', $config['entity']);
+        $this->wireValidator($container, 'type', BaseType::class);
 
         if ($config['constraints']) {
             $loader->load('validation.yml');
@@ -170,6 +175,7 @@ class EvrinomaArticleExtension extends Extension
             );
         }
     }
+
     private function wireConstraintTag(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $key => $definition) {

@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Entity\Type;
 
 use Doctrine\ORM\Mapping as ORM;
-use Evrinoma\ArticleBundle\Model\Article\AbstractArticle;
+use Evrinoma\ArticleBundle\Model\Type\AbstractType;
 
 /**
  * @ORM\Table(name="e_article_type")
  * @ORM\Entity
  */
-class BaseType extends AbstractArticle
+class BaseType extends AbstractType
 {
 }

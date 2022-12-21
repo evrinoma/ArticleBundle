@@ -14,7 +14,9 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\DependencyInjection\Compiler;
 
 use Evrinoma\ArticleBundle\DependencyInjection\EvrinomaArticleExtension;
+use Evrinoma\ArticleBundle\Entity\Type\BaseType;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
+use Evrinoma\ArticleBundle\Model\Type\TypeInterface;
 use Evrinoma\UtilsBundle\DependencyInjection\Compiler\AbstractMapEntity;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -34,6 +36,14 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
             $referenceAnnotationReader = new Reference('annotations.reader');
 
             $this->cleanMetadata($driver, [EvrinomaArticleExtension::ENTITY]);
+
+            $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Type', '%s/Entity/Type');
+            $this->addResolveTargetEntity(
+                [
+                    BaseType::class => [TypeInterface::class => []],
+                ],
+                false
+            );
 
             $entityArticle = $container->getParameter('evrinoma.article.entity');
             if (str_contains($entityArticle, EvrinomaArticleExtension::ENTITY)) {
