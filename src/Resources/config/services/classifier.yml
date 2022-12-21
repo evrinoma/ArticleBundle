@@ -88,3 +88,9 @@ services:
 
   Evrinoma\ArticleBundle\PreValidator\Classifier\DtoPreValidatorInterface:
     alias: evrinoma.article.classifier.pre.validator
+
+  evrinoma.article.classifier.form.rest.classifier:
+    class: Evrinoma\ArticleBundle\Form\Rest\Classifier\ClassifierChoiceType
+    arguments:
+      - '@evrinoma.article.classifier.query.manager'
+    tags: { - name: form.type }

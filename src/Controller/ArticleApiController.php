@@ -25,6 +25,7 @@ use Evrinoma\UtilsBundle\Controller\AbstractWrappedApiController;
 use Evrinoma\UtilsBundle\Controller\ApiControllerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use JMS\Serializer\SerializerInterface;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -266,7 +267,33 @@ final class ArticleApiController extends AbstractWrappedApiController implements
      *         @OA\Schema(
      *             type="string",
      *         )
-     *     )
+     *     ),
+     *     @OA\Parameter(
+     *         name="classifier[brief]",
+     *         in="query",
+     *         description="Classifier Article",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="string",
+     *                 ref=@Model(type=Evrinoma\ArticleBundle\Form\Rest\Classifier\ClassifierChoiceType::class, options={"data": "brief"})
+     *             ),
+     *         ),
+     *         style="form"
+     *     ),
+     *     @OA\Parameter(
+     *         name="type[brief]",
+     *         in="query",
+     *         description="Type Article",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="string",
+     *                 ref=@Model(type=Evrinoma\ArticleBundle\Form\Rest\Type\TypeChoiceType::class, options={"data": "brief"})
+     *             ),
+     *         ),
+     *         style="form"
+     *     ),
      * )
      * @OA\Response(response=200, description="Return article")
      *

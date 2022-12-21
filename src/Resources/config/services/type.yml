@@ -88,3 +88,9 @@ services:
 
   Evrinoma\ArticleBundle\PreValidator\Type\DtoPreValidatorInterface:
     alias: evrinoma.article.type.pre.validator
+
+  evrinoma.article.type.form.rest.type:
+    class: Evrinoma\ArticleBundle\Form\Rest\Type\TypeChoiceType
+    arguments:
+      - '@evrinoma.article.type.query.manager'
+    tags: { - name: form.type }
