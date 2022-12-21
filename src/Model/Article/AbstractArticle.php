@@ -43,13 +43,13 @@ abstract class AbstractArticle implements ArticleInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Evrinoma\ArticleBundle\Model\Type\TypeInterface")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */
     protected TypeInterface $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Evrinoma\ArticleBundle\Model\Classifier\ClassifierInterface")
-     * @ORM\JoinColumn(name="classifier_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="classifier_id", referencedColumnName="id", nullable=false)
      */
     protected ClassifierInterface $classifier;
 

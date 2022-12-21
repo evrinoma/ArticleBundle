@@ -58,6 +58,8 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
             ArticleApiDtoInterface::POSITION => Position::value(),
             ArticleApiDtoInterface::ACTIVE => Active::value(),
             ArticleApiDtoInterface::BODY => Body::default(),
+            ArticleApiDtoInterface::TYPE => BaseType::defaultData(),
+            ArticleApiDtoInterface::CLASSIFIER => BaseClassifier::defaultData(),
         ];
     }
 

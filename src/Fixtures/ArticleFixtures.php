@@ -32,6 +32,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ArticleApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
+            ArticleApiDtoInterface::TYPE => 1,
+            ArticleApiDtoInterface::CLASSIFIER => 2,
         ],
         [
             ArticleApiDtoInterface::TITLE => 'kzkt',
@@ -41,6 +43,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             'created_at' => '2015-10-23 10:21:50',
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
+            ArticleApiDtoInterface::TYPE => 2,
+            ArticleApiDtoInterface::CLASSIFIER => 3,
         ],
         [
             ArticleApiDtoInterface::TITLE => 'c2m',
@@ -51,6 +55,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ArticleApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
+            ArticleApiDtoInterface::TYPE => 4,
+            ArticleApiDtoInterface::CLASSIFIER => 5,
         ],
         [
             ArticleApiDtoInterface::TITLE => 'kzkt2',
@@ -60,7 +66,9 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             'created_at' => '2015-10-23 10:21:50',
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            ],
+            ArticleApiDtoInterface::TYPE => 5,
+            ArticleApiDtoInterface::CLASSIFIER => 6,
+        ],
         [
             ArticleApiDtoInterface::TITLE => 'nvr',
             ArticleApiDtoInterface::BODY => 'http://nvr',
@@ -70,6 +78,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ArticleApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
+            ArticleApiDtoInterface::TYPE => 6,
+            ArticleApiDtoInterface::CLASSIFIER => 5,
         ],
         [
             ArticleApiDtoInterface::TITLE => 'nvr2',
@@ -79,7 +89,9 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             'created_at' => '2010-10-23 10:21:50',
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
-            ],
+            ArticleApiDtoInterface::TYPE => 5,
+            ArticleApiDtoInterface::CLASSIFIER => 4,
+        ],
         [
             ArticleApiDtoInterface::TITLE => 'nvr3',
             ArticleApiDtoInterface::BODY => 'http://nvr3',
@@ -89,6 +101,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::IMAGE => 'PATH://TO_IMAGE',
             ArticleApiDtoInterface::PREVIEW => 'PATH://TO_IMAGE_PREV',
             ArticleApiDtoInterface::ATTACHMENT => 'PATH://TO_IMAGE_ATTACHMENT',
+            ArticleApiDtoInterface::TYPE => 4,
+            ArticleApiDtoInterface::CLASSIFIER => 3,
         ],
     ];
 
@@ -104,6 +118,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
     protected function create(ObjectManager $manager): self
     {
         $short = self::getReferenceName();
+        $shortClassifier = ClassifierFixtures::getReferenceName();
+        $shortType = TypeFixtures::getReferenceName();
         $i = 0;
 
         foreach (static::$data as $record) {
@@ -115,7 +131,10 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
                 ->setBody($record[ArticleApiDtoInterface::BODY])
                 ->setPosition($record[ArticleApiDtoInterface::POSITION])
                 ->setCreatedAt(new \DateTimeImmutable($record['created_at']))
-                ->setImage($record[ArticleApiDtoInterface::IMAGE]);
+                ->setImage($record[ArticleApiDtoInterface::IMAGE])
+                ->setClassifier($this->getReference($shortClassifier.$record[ArticleApiDtoInterface::CLASSIFIER]))
+                ->setType($this->getReference($shortType.$record[ArticleApiDtoInterface::TYPE]))
+            ;
 
             if (\array_key_exists(ArticleApiDtoInterface::ATTACHMENT, $record)) {
                 $entity

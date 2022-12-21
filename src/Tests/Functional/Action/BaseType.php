@@ -44,7 +44,7 @@ class BaseType extends AbstractServiceTest implements BaseTypeTestInterface
     {
         return [
             TypeApiDtoInterface::DTO_CLASS => static::getDtoClass(),
-            TypeApiDtoInterface::ID => Id::default(),
+            TypeApiDtoInterface::ID => Id::value(),
             TypeApiDtoInterface::BRIEF => Brief::default(),
             TypeApiDtoInterface::DESCRIPTION => Description::value(),
             TypeApiDtoInterface::ACTIVE => Active::value(),

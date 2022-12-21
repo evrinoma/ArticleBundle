@@ -44,7 +44,7 @@ class BaseClassifier extends AbstractServiceTest implements BaseClassifierTestIn
     {
         return [
             ClassifierApiDtoInterface::DTO_CLASS => static::getDtoClass(),
-            ClassifierApiDtoInterface::ID => Id::default(),
+            ClassifierApiDtoInterface::ID => Id::value(),
             ClassifierApiDtoInterface::BRIEF => Brief::default(),
             ClassifierApiDtoInterface::DESCRIPTION => Description::value(),
             ClassifierApiDtoInterface::ACTIVE => Active::value(),
