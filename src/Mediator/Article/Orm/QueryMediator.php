@@ -38,6 +38,25 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
         $alias = $this->alias();
 
         /** @var $dto ArticleApiDtoInterface */
+
+        if ($dto->hasTypeApiDto() && $dto->getTypeApiDto()->hasBrief()) {
+            $aliasType = AliasInterface::TYPE;
+            $builder
+                ->leftJoin($alias.'.type', $aliasType)
+                ->addSelect($aliasType)
+                ->andWhere($aliasType.'.brief like :briefType')
+                ->setParameter('briefType', '%'.$dto->getTypeApiDto()->getBrief().'%');
+        }
+
+        if ($dto->hasClassifierApiDto() && $dto->getClassifierApiDto()->hasBrief()) {
+            $aliasClassifier = AliasInterface::CLASSIFIER;
+            $builder
+                ->leftJoin($alias.'.classifier', $aliasClassifier)
+                ->addSelect($aliasClassifier)
+                ->andWhere($aliasClassifier.'.brief like :briefClassifier')
+                ->setParameter('briefClassifier', '%'.$dto->getClassifierApiDto()->getBrief().'%');
+        }
+
         if ($dto->hasId()) {
             $builder
                 ->andWhere($alias.'.id = :id')
