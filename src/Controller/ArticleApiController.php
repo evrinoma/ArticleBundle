@@ -74,6 +74,8 @@ final class ArticleApiController extends AbstractWrappedApiController implements
      *                         @OA\Property(property="title", type="string"),
      *                         @OA\Property(property="position", type="int"),
      *                         @OA\Property(property="url", type="string"),
+     *                         @OA\Property(property="classifier[brief]", type="string"),
+     *                         @OA\Property(property="type[brief]", type="string"),
      *                         @OA\Property(property="video", type="string",  format="binary"),
      *                         @OA\Property(property="preview", type="string",  format="binary")
      *                     )
@@ -126,6 +128,8 @@ final class ArticleApiController extends AbstractWrappedApiController implements
      *                         @OA\Property(property="title", type="string"),
      *                         @OA\Property(property="position", type="int"),
      *                         @OA\Property(property="url", type="string"),
+     *                         @OA\Property(property="classifier[brief]", type="string"),
+     *                         @OA\Property(property="type[brief]", type="string"),
      *                         @OA\Property(property="video", type="string",  format="binary"),
      *                         @OA\Property(property="preview", type="string",  format="binary")
      *                     )

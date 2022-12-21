@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Model\Article;
 
 use Doctrine\ORM\Mapping as ORM;
+use Evrinoma\ArticleBundle\Model\Classifier\ClassifierInterface;
+use Evrinoma\ArticleBundle\Model\Type\TypeInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\AttachmentTrait;
 use Evrinoma\UtilsBundle\Entity\BodyTrait;
@@ -40,6 +42,18 @@ abstract class AbstractArticle implements ArticleInterface
     use TitleTrait;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Evrinoma\ArticleBundle\Model\Type\TypeInterface")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     */
+    protected TypeInterface $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evrinoma\ArticleBundle\Model\Classifier\ClassifierInterface")
+     * @ORM\JoinColumn(name="classifier_id", referencedColumnName="id")
+     */
+    protected ClassifierInterface $classifier;
+
+    /**
      * @ORM\Column(name="attachment", type="string", length=2047, nullable=true)
      */
     protected $attachment = null;
@@ -57,5 +71,45 @@ abstract class AbstractArticle implements ArticleInterface
     public function hasAttachment(): bool
     {
         return null !== $this->attachment;
+    }
+
+    /**
+     * @return TypeInterface
+     */
+    public function getType(): TypeInterface
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param TypeInterface $type
+     *
+     *  @return ArticleInterface
+     */
+    public function setType(TypeInterface $type): ArticleInterface
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return ClassifierInterface
+     */
+    public function getClassifier(): ClassifierInterface
+    {
+        return $this->classifier;
+    }
+
+    /**
+     * @param ClassifierInterface $classifier
+     *
+     *  @return ArticleInterface
+     */
+    public function setClassifier(ClassifierInterface $classifier): ArticleInterface
+    {
+        $this->classifier = $classifier;
+
+        return $this;
     }
 }

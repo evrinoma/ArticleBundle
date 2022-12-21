@@ -25,4 +25,11 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
 
 interface ArticleApiDtoInterface extends DtoInterface, IdInterface, AttachmentInterface, TitleInterface, BodyInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface
 {
+    public function hasTypeApiDto(): bool;
+
+    public function getTypeApiDto(): TypeApiDtoInterface;
+
+    public function hasClassifierApiDto(): bool;
+
+    public function getClassifierApiDto(): ClassifierApiDtoInterface;
 }

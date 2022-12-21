@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Dto;
 
+use Evrinoma\DtoBundle\Annotation\Dto;
 use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
@@ -35,6 +36,88 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
     use PositionTrait;
     use PreviewTrait;
     use TitleTrait;
+
+    /**
+     * @Dto(class="Evrinoma\ArticleBundle\Dto\TypeApiDto", generator="genRequestTypeApiDto")
+     */
+    private ?TypeApiDtoInterface $typeApiDto = null;
+
+    /**
+     * @param TypeApiDto $typeApiDto
+     *
+     * @return DtoInterface
+     */
+    public function setTypeApiDto(TypeApiDtoInterface $typeApiDto): DtoInterface
+    {
+        $this->typeApiDto = $typeApiDto;
+
+        return $this;
+    }
+
+    public function hasTypeApiDto(): bool
+    {
+        return null !== $this->typeApiDto;
+    }
+
+    public function getTypeApiDto(): TypeApiDtoInterface
+    {
+        return $this->typeApiDto;
+    }
+
+    public function genRequestTypeApiDto(?Request $request): ?\Generator
+    {
+        if ($request) {
+            $type = $request->get(TypeApiDtoInterface::TYPE);
+            if ($type) {
+                $newRequest = $this->getCloneRequest();
+                $type[DtoInterface::DTO_CLASS] = TypeApiDto::class;
+                $newRequest->request->add($type);
+
+                yield $newRequest;
+            }
+        }
+    }
+
+    /**
+     * @Dto(class="Evrinoma\ArticleBundle\Dto\ClassifierApiDto", generator="genRequestClassifierApiDto")
+     */
+    private ?ClassifierApiDtoInterface $classifierApiDto = null;
+
+    /**
+     * @param ClassifierApiDto $classifierApiDto
+     *
+     * @return DtoInterface
+     */
+    public function setClassifierApiDto(ClassifierApiDtoInterface $classifierApiDto): DtoInterface
+    {
+        $this->classifierApiDto = $classifierApiDto;
+
+        return $this;
+    }
+
+    public function hasClassifierApiDto(): bool
+    {
+        return null !== $this->classifierApiDto;
+    }
+
+    public function getClassifierApiDto(): ClassifierApiDtoInterface
+    {
+        return $this->classifierApiDto;
+    }
+
+    public function genRequestClassifierApiDto(?Request $request): ?\Generator
+    {
+        if ($request) {
+            $classifier = $request->get(ClassifierApiDtoInterface::CLASSIFIER);
+            if ($classifier) {
+                $newRequest = $this->getCloneRequest();
+                $classifier[DtoInterface::DTO_CLASS] = ClassifierApiDto::class;
+                $newRequest->request->add($classifier);
+
+                yield $newRequest;
+            }
+        }
+    }
 
     public function toDto(Request $request): DtoInterface
     {
