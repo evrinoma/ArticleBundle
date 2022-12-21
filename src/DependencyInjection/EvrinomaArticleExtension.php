@@ -15,6 +15,7 @@ namespace Evrinoma\ArticleBundle\DependencyInjection;
 
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Complex\ArticlePass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\ArticlePass as PropertyArticlePass;
+use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\TypePass as PropertyTypePass;
 use Evrinoma\ArticleBundle\Dto\ArticleApiDto;
 use Evrinoma\ArticleBundle\Dto\TypeApiDto;
 use Evrinoma\ArticleBundle\Entity\Article\BaseArticle;
@@ -180,8 +181,11 @@ class EvrinomaArticleExtension extends Extension
     {
         foreach ($container->getDefinitions() as $key => $definition) {
             switch (true) {
-                case str_contains($key, PropertyArticlePass::ARTICLE_CONSTRAINT)   :
+                case false !== str_contains($key, PropertyArticlePass::ARTICLE_CONSTRAINT):
                     $definition->addTag(PropertyArticlePass::ARTICLE_CONSTRAINT);
+                    break;
+                case false !== str_contains($key, PropertyTypePass::TYPE_CONSTRAINT):
+                    $definition->addTag(PropertyTypePass::TYPE_CONSTRAINT);
                     break;
 //                case false !== strpos($key, ArticlePass::ARTICLE_CONSTRAINT):
 //                    $definition->addTag(ArticlePass::ARTICLE_CONSTRAINT);

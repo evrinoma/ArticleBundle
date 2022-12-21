@@ -1,1 +1,7 @@
 services:
+  evrinoma.article.constraint.property.type.description:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Type\Description
+  evrinoma.article.constraint.property.type.brief:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Type\Brief
+  evrinoma.article.constraint.property.type.active:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Type\Active

@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property;
 
-use Evrinoma\ArticleBundle\Validator\ArticleValidator;
+use Evrinoma\ArticleBundle\Validator\TypeValidator;
 use Evrinoma\UtilsBundle\DependencyInjection\Compiler\AbstractConstraint;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
-class ArticlePass extends AbstractConstraint implements CompilerPassInterface
+class TypePass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const ARTICLE_CONSTRAINT = 'evrinoma.article.constraint.article.property';
+    public const TYPE_CONSTRAINT = 'evrinoma.article.constraint.type.property';
 
-    protected static string $alias = self::ARTICLE_CONSTRAINT;
-    protected static string $class = ArticleValidator::class;
+    protected static string $alias = self::TYPE_CONSTRAINT;
+    protected static string $class = TypeValidator::class;
     protected static string $methodCall = 'addPropertyConstraint';
 }

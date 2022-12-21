@@ -13,8 +13,9 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle;
 
-use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Complex\ArticlePass as PropertyArticlePass;
-use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\ArticlePass;
+use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Complex\ArticlePass;
+use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\ArticlePass as PropertyArticlePass;
+use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\TypePass as PropertyTypePass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\DecoratorPass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\MapEntityPass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\ServicePass;
@@ -32,6 +33,7 @@ class EvrinomaArticleBundle extends Bundle
         $container
             ->addCompilerPass(new MapEntityPass($this->getNamespace(), $this->getPath()))
             ->addCompilerPass(new PropertyArticlePass())
+            ->addCompilerPass(new PropertyTypePass())
             ->addCompilerPass(new ArticlePass())
             ->addCompilerPass(new DecoratorPass())
             ->addCompilerPass(new ServicePass())
