@@ -1,2 +1,3 @@
 imports:
   - { resource: constraint/article.yml }
+  - { resource: constraint/type.yml }

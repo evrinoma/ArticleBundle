@@ -1,18 +1,18 @@
 services:
-  evrinoma.article.constraint.property.body:
-    class: Evrinoma\ArticleBundle\Constraint\Property\Body
+  evrinoma.article.constraint.property.article.body:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Body
 
-  evrinoma.article.constraint.property.title:
-    class: Evrinoma\ArticleBundle\Constraint\Property\Title
+  evrinoma.article.constraint.property.article.title:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Title
 
-  evrinoma.article.constraint.property.preview:
-    class: Evrinoma\ArticleBundle\Constraint\Property\Preview
+  evrinoma.article.constraint.property.article.preview:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Preview
 
-  evrinoma.article.constraint.property.active:
-    class: Evrinoma\ArticleBundle\Constraint\Property\Active
+  evrinoma.article.constraint.property.article.active:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Active
 
-  evrinoma.article.constraint.property.position:
-    class: Evrinoma\ArticleBundle\Constraint\Property\Position
+  evrinoma.article.constraint.property.article.position:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Position
 
   evrinoma.article.constraint.complex.article.article:
     class: Evrinoma\ArticleBundle\Constraint\Complex\Article\Article

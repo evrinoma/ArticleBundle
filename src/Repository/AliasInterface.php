@@ -16,4 +16,5 @@ namespace Evrinoma\ArticleBundle\Repository;
 interface AliasInterface
 {
     public const ARTICLE = 'article';
+    public const TYPE = 'type';
 }

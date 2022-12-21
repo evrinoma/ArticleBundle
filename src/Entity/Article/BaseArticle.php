@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\ArticleBundle\Model\Article\AbstractArticle;
 
 /**
- * @ORM\Table(name="e_article")
+ * @ORM\Table(name="e_article_article")
  * @ORM\Entity
  */
 class BaseArticle extends AbstractArticle

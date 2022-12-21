@@ -15,9 +15,9 @@ namespace Evrinoma\ArticleBundle\Controller;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Evrinoma\ArticleBundle\Dto\ArticleApiDtoInterface;
-use Evrinoma\ArticleBundle\Exception\ArticleCannotBeSavedException;
-use Evrinoma\ArticleBundle\Exception\ArticleInvalidException;
-use Evrinoma\ArticleBundle\Exception\ArticleNotFoundException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeSavedException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleInvalidException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleNotFoundException;
 use Evrinoma\ArticleBundle\Facade\Article\FacadeInterface;
 use Evrinoma\ArticleBundle\Serializer\GroupInterface;
 use Evrinoma\DtoBundle\Factory\FactoryDtoInterface;

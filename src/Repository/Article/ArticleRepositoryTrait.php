@@ -16,10 +16,10 @@ namespace Evrinoma\ArticleBundle\Repository\Article;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Evrinoma\ArticleBundle\Dto\ArticleApiDtoInterface;
-use Evrinoma\ArticleBundle\Exception\ArticleCannotBeSavedException;
-use Evrinoma\ArticleBundle\Exception\ArticleNotFoundException;
-use Evrinoma\ArticleBundle\Exception\ArticleProxyException;
-use Evrinoma\ArticleBundle\Mediator\QueryMediatorInterface;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeSavedException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleNotFoundException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleProxyException;
+use Evrinoma\ArticleBundle\Mediator\Article\QueryMediatorInterface;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
 
 trait ArticleRepositoryTrait

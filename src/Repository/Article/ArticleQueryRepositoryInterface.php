@@ -15,8 +15,8 @@ namespace Evrinoma\ArticleBundle\Repository\Article;
 
 use Doctrine\ORM\Exception\ORMException;
 use Evrinoma\ArticleBundle\Dto\ArticleApiDtoInterface;
-use Evrinoma\ArticleBundle\Exception\ArticleNotFoundException;
-use Evrinoma\ArticleBundle\Exception\ArticleProxyException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleNotFoundException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleProxyException;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
 
 interface ArticleQueryRepositoryInterface

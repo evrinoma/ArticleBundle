@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Facade\Article;
 
-use Evrinoma\ArticleBundle\Manager\CommandManagerInterface;
-use Evrinoma\ArticleBundle\Manager\QueryManagerInterface;
-use Evrinoma\ArticleBundle\PreValidator\DtoPreValidatorInterface;
+use Evrinoma\ArticleBundle\Manager\Article\CommandManagerInterface;
+use Evrinoma\ArticleBundle\Manager\Article\QueryManagerInterface;
+use Evrinoma\ArticleBundle\PreValidator\Article\DtoPreValidatorInterface;
 use Evrinoma\UtilsBundle\Adaptor\AdaptorRegistryInterface;
 use Evrinoma\UtilsBundle\Facade\FacadeTrait;
 use Evrinoma\UtilsBundle\Handler\HandlerInterface;

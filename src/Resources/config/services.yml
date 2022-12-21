@@ -1,2 +1,3 @@
 imports:
   - { resource: services/article.yml }
+  - { resource: services/type.yml }

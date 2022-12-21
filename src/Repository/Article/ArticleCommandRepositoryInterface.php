@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Repository\Article;
 
-use Evrinoma\ArticleBundle\Exception\ArticleCannotBeRemovedException;
-use Evrinoma\ArticleBundle\Exception\ArticleCannotBeSavedException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeRemovedException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeSavedException;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
 
 interface ArticleCommandRepositoryInterface

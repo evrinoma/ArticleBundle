@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Repository\Orm\Article;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Evrinoma\ArticleBundle\Mediator\QueryMediatorInterface;
+use Evrinoma\ArticleBundle\Mediator\Article\QueryMediatorInterface;
 use Evrinoma\ArticleBundle\Repository\Article\ArticleRepositoryInterface;
 use Evrinoma\ArticleBundle\Repository\Article\ArticleRepositoryTrait;
 use Evrinoma\UtilsBundle\Repository\Orm\RepositoryWrapper;
