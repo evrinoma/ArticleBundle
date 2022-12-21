@@ -15,14 +15,18 @@ namespace Evrinoma\ArticleBundle\DependencyInjection;
 
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Complex\ArticlePass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\ArticlePass as PropertyArticlePass;
+use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\ClassifierPass as PropertyClassifierPass;
 use Evrinoma\ArticleBundle\DependencyInjection\Compiler\Constraint\Property\TypePass as PropertyTypePass;
 use Evrinoma\ArticleBundle\Dto\ArticleApiDto;
+use Evrinoma\ArticleBundle\Dto\ClassifierApiDto;
 use Evrinoma\ArticleBundle\Dto\TypeApiDto;
 use Evrinoma\ArticleBundle\Entity\Article\BaseArticle;
+use Evrinoma\ArticleBundle\Entity\Classifier\BaseClassifier;
 use Evrinoma\ArticleBundle\Entity\Type\BaseType;
 use Evrinoma\ArticleBundle\EvrinomaArticleBundle;
 use Evrinoma\ArticleBundle\Factory\Article\Factory as ArticleFactory;
 use Evrinoma\ArticleBundle\Mediator\Article\QueryMediatorInterface as ArticleQueryMediatorInterface;
+use Evrinoma\ArticleBundle\Mediator\Classifier\QueryMediatorInterface as ClassifierQueryMediatorInterface;
 use Evrinoma\ArticleBundle\Mediator\Type\QueryMediatorInterface as TypeQueryMediatorInterface;
 use Evrinoma\UtilsBundle\Adaptor\AdaptorRegistry;
 use Evrinoma\UtilsBundle\DependencyInjection\HelperTrait;
@@ -99,6 +103,7 @@ class EvrinomaArticleExtension extends Extension
         }
 
         $this->wireMediator($container, ArticleQueryMediatorInterface::class, $config['db_driver'], 'article');
+        $this->wireMediator($container, ClassifierQueryMediatorInterface::class, $config['db_driver'], 'classifier');
         $this->wireMediator($container, TypeQueryMediatorInterface::class, $config['db_driver'], 'type');
 
         $this->remapParametersNamespaces(
@@ -114,13 +119,16 @@ class EvrinomaArticleExtension extends Extension
 
         if ($registry && isset(self::$doctrineDrivers[$config['db_driver']])) {
             $this->wireRepository($container, $registry, ArticleQueryMediatorInterface::class, 'article', $config['entity'], $config['db_driver']);
+            $this->wireRepository($container, $registry, ClassifierQueryMediatorInterface::class, 'classifier', BaseClassifier::class, $config['db_driver']);
             $this->wireRepository($container, $registry, TypeQueryMediatorInterface::class, 'type', BaseType::class, $config['db_driver']);
         }
 
         $this->wireController($container, 'article', $config['dto']);
+        $this->wireController($container, 'classifier', ClassifierApiDto::class);
         $this->wireController($container, 'type', TypeApiDto::class);
 
         $this->wireValidator($container, 'article', $config['entity']);
+        $this->wireValidator($container, 'classifier', BaseClassifier::class);
         $this->wireValidator($container, 'type', BaseType::class);
 
         if ($config['constraints']) {
@@ -183,6 +191,9 @@ class EvrinomaArticleExtension extends Extension
             switch (true) {
                 case false !== str_contains($key, PropertyArticlePass::ARTICLE_CONSTRAINT):
                     $definition->addTag(PropertyArticlePass::ARTICLE_CONSTRAINT);
+                    break;
+                case false !== str_contains($key, PropertyClassifierPass::CLASSIFIER_CONSTRAINT):
+                    $definition->addTag(PropertyClassifierPass::CLASSIFIER_CONSTRAINT);
                     break;
                 case false !== str_contains($key, PropertyTypePass::TYPE_CONSTRAINT):
                     $definition->addTag(PropertyTypePass::TYPE_CONSTRAINT);

@@ -1,0 +1,9 @@
+services:
+  evrinoma.article.test.functional.action.classifier:
+    class: Evrinoma\ArticleBundle\Tests\Functional\Action\BaseClassifier
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\Tests\Functional\Action\BaseClassifier:
+    alias: evrinoma.article.test.functional.action.classifier
+    public: true

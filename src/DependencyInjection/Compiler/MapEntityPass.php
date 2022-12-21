@@ -14,8 +14,10 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\DependencyInjection\Compiler;
 
 use Evrinoma\ArticleBundle\DependencyInjection\EvrinomaArticleExtension;
+use Evrinoma\ArticleBundle\Entity\Classifier\BaseClassifier;
 use Evrinoma\ArticleBundle\Entity\Type\BaseType;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
+use Evrinoma\ArticleBundle\Model\Classifier\ClassifierInterface;
 use Evrinoma\ArticleBundle\Model\Type\TypeInterface;
 use Evrinoma\UtilsBundle\DependencyInjection\Compiler\AbstractMapEntity;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -38,9 +40,12 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
             $this->cleanMetadata($driver, [EvrinomaArticleExtension::ENTITY]);
 
             $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Type', '%s/Entity/Type');
+            $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Classifier', '%s/Entity/Classifier');
+
             $this->addResolveTargetEntity(
                 [
                     BaseType::class => [TypeInterface::class => []],
+                    BaseClassifier::class => [ClassifierInterface::class => []],
                 ],
                 false
             );

@@ -1,3 +1,4 @@
 imports:
   - { resource: constraint/article.yml }
   - { resource: constraint/type.yml }
+  - { resource: constraint/classifier.yml }

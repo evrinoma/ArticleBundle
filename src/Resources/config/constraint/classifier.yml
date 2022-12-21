@@ -1,0 +1,7 @@
+services:
+  evrinoma.article.constraint.property.classifier.description:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Classifier\Description
+  evrinoma.article.constraint.property.classifier.brief:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Classifier\Brief
+  evrinoma.article.constraint.property.classifier.active:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Classifier\Active

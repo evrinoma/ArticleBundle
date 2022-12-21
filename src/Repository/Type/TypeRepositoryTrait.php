@@ -27,17 +27,17 @@ trait TypeRepositoryTrait
     private QueryMediatorInterface $mediator;
 
     /**
-     * @param TypeInterface $article
+     * @param TypeInterface $type
      *
      * @return bool
      *
      * @throws TypeCannotBeSavedException
      * @throws ORMException
      */
-    public function save(TypeInterface $article): bool
+    public function save(TypeInterface $type): bool
     {
         try {
-            $this->persistWrapped($article);
+            $this->persistWrapped($type);
         } catch (ORMInvalidArgumentException $e) {
             throw new TypeCannotBeSavedException($e->getMessage());
         }
@@ -46,11 +46,11 @@ trait TypeRepositoryTrait
     }
 
     /**
-     * @param TypeInterface $article
+     * @param TypeInterface $type
      *
      * @return bool
      */
-    public function remove(TypeInterface $article): bool
+    public function remove(TypeInterface $type): bool
     {
         return true;
     }
@@ -68,13 +68,13 @@ trait TypeRepositoryTrait
 
         $this->mediator->createQuery($dto, $builder);
 
-        $articles = $this->mediator->getResult($dto, $builder);
+        $types = $this->mediator->getResult($dto, $builder);
 
-        if (0 === \count($articles)) {
-            throw new TypeNotFoundException('Cannot find article by findByCriteria');
+        if (0 === \count($types)) {
+            throw new TypeNotFoundException('Cannot find type by findByCriteria');
         }
 
-        return $articles;
+        return $types;
     }
 
     /**
@@ -88,14 +88,14 @@ trait TypeRepositoryTrait
      */
     public function find($id, $lockMode = null, $lockVersion = null): TypeInterface
     {
-        /** @var TypeInterface $article */
-        $article = $this->findWrapped($id);
+        /** @var TypeInterface $type */
+        $type = $this->findWrapped($id);
 
-        if (null === $article) {
-            throw new TypeNotFoundException("Cannot find article with id $id");
+        if (null === $type) {
+            throw new TypeNotFoundException("Cannot find type with id $id");
         }
 
-        return $article;
+        return $type;
     }
 
     /**
@@ -108,12 +108,12 @@ trait TypeRepositoryTrait
      */
     public function proxy(string $id): TypeInterface
     {
-        $article = $this->referenceWrapped($id);
+        $type = $this->referenceWrapped($id);
 
-        if (!$this->containsWrapped($article)) {
+        if (!$this->containsWrapped($type)) {
             throw new TypeProxyException("Proxy doesn't exist with $id");
         }
 
-        return $article;
+        return $type;
     }
 }

@@ -11,11 +11,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Evrinoma\ArticleBundle\Repository;
+namespace Evrinoma\ArticleBundle\Repository\Classifier;
 
-interface AliasInterface
+interface ClassifierRepositoryInterface extends ClassifierQueryRepositoryInterface, ClassifierCommandRepositoryInterface
 {
-    public const ARTICLE = 'article';
-    public const TYPE = 'type';
-    public const CLASSIFIER = 'classifier';
 }

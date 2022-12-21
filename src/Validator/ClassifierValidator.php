@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Validator;
 
-use Evrinoma\ArticleBundle\Entity\Type\BaseType;
+use Evrinoma\ArticleBundle\Entity\Classifier\BaseClassifier;
 use Evrinoma\UtilsBundle\Validator\AbstractValidator;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class TypeValidator extends AbstractValidator
+final class ClassifierValidator extends AbstractValidator
 {
     /**
      * @var string|null
      */
-    protected static ?string $entityClass = BaseType::class;
+    protected static ?string $entityClass = BaseClassifier::class;
 
     /**
      * @param ValidatorInterface $validator

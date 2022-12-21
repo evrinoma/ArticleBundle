@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Controller;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Evrinoma\ArticleBundle\Dto\TypeApiDtoInterface;
-use Evrinoma\ArticleBundle\Exception\Type\TypeCannotBeSavedException;
-use Evrinoma\ArticleBundle\Exception\Type\TypeInvalidException;
-use Evrinoma\ArticleBundle\Exception\Type\TypeNotFoundException;
-use Evrinoma\ArticleBundle\Facade\Type\FacadeInterface;
+use Evrinoma\ArticleBundle\Dto\ClassifierApiDtoInterface;
+use Evrinoma\ArticleBundle\Exception\Classifier\ClassifierCannotBeSavedException;
+use Evrinoma\ArticleBundle\Exception\Classifier\ClassifierInvalidException;
+use Evrinoma\ArticleBundle\Exception\Classifier\ClassifierNotFoundException;
+use Evrinoma\ArticleBundle\Facade\Classifier\FacadeInterface;
 use Evrinoma\ArticleBundle\Serializer\GroupInterface;
 use Evrinoma\DtoBundle\Factory\FactoryDtoInterface;
 use Evrinoma\UtilsBundle\Controller\AbstractWrappedApiController;
@@ -30,7 +30,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class TypeApiController extends AbstractWrappedApiController implements ApiControllerInterface
+final class ClassifierApiController extends AbstractWrappedApiController implements ApiControllerInterface
 {
     private string $dtoClass;
 
@@ -55,41 +55,43 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
     }
 
     /**
-     * @Rest\Post("/api/article/type/create", options={"expose": true}, name="api_article_type_create")
+     * @Rest\Post("/api/article/classifier/create", options={"expose": true}, name="api_article_classifier_create")
      * @OA\Post(
      *     tags={"article"},
-     *     description="the method perform create article type",
+     *     description="the method perform create article classifier",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 example={
-     *                     "class": "Evrinoma\ArticleBundle\Dto\TypeApiDtoo",
-     *                     "brief": "news",
-     *                     "description": "новости",
+     *                     "class": "Evrinoma\ArticleBundle\Dto\ClassifierApiDtoo",
+     *                     "active": "b",
+     *                     "brief": "publicist",
+     *                     "description": "Публикации",
      *                 },
      *                 type="object",
-     *                 @OA\Property(property="class", type="string", default="Evrinoma\ArticleBundle\Dto\TypeApiDto"),
+     *                 @OA\Property(property="class", type="string", default="Evrinoma\ArticleBundle\Dto\ClassifierApiDto"),
      *                 @OA\Property(property="description", type="string"),
      *                 @OA\Property(property="brief", type="string"),
+     *                 @OA\Property(property="active", type="string"),
      *             )
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Create article type")
+     * @OA\Response(response=200, description="Create article classifier")
      *
      * @return JsonResponse
      */
     public function postAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
+        /** @var ClassifierApiDtoInterface $articleApiDto */
         $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $this->setStatusCreated();
 
         $json = [];
         $error = [];
-        $group = GroupInterface::API_POST_ARTICLE_TYPE;
+        $group = GroupInterface::API_POST_ARTICLE_CLASSIFIER;
 
         try {
             $this->facade->post($articleApiDto, $group, $json);
@@ -97,27 +99,27 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Create article type', $json, $error);
+        return $this->setSerializeGroup($group)->JsonResponse('Create article classifier', $json, $error);
     }
 
     /**
-     * @Rest\Put("/api/article/type/save", options={"expose": true}, name="api_article_type_save")
+     * @Rest\Put("/api/article/classifier/save", options={"expose": true}, name="api_article_classifier_save")
      * @OA\Put(
      *     tags={"article"},
-     *     description="the method perform save article type for current entity",
+     *     description="the method perform save article classifier for current entity",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 example={
-     *                     "class": "Evrinoma\ArticleBundle\Dto\TypeApiDtoo",
+     *                     "class": "Evrinoma\ArticleBundle\Dto\ClassifierApiDtoo",
      *                     "id": "48",
      *                     "active": "b",
-     *                     "brief": "news",
-     *                     "description": "новости",
+     *                     "brief": "publicist",
+     *                     "description": "Публикации",
      *                 },
      *                 type="object",
-     *                 @OA\Property(property="class", type="string", default="Evrinoma\ArticleBundle\Dto\TypeApiDto"),
+     *                 @OA\Property(property="class", type="string", default="Evrinoma\ArticleBundle\Dto\ClassifierApiDto"),
      *                 @OA\Property(property="id", type="string"),
      *                 @OA\Property(property="description", type="string"),
      *                 @OA\Property(property="brief", type="string"),
@@ -126,18 +128,18 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Save article type")
+     * @OA\Response(response=200, description="Save article classifier")
      *
      * @return JsonResponse
      */
     public function putAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
+        /** @var ClassifierApiDtoInterface $articleApiDto */
         $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
-        $group = GroupInterface::API_PUT_ARTICLE_TYPE;
+        $group = GroupInterface::API_PUT_ARTICLE_CLASSIFIER;
 
         try {
             $this->facade->put($articleApiDto, $group, $json);
@@ -145,11 +147,11 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Save article type', $json, $error);
+        return $this->setSerializeGroup($group)->JsonResponse('Save article classifier', $json, $error);
     }
 
     /**
-     * @Rest\Delete("/api/article/type/delete", options={"expose": true}, name="api_article_type_delete")
+     * @Rest\Delete("/api/article/classifier/delete", options={"expose": true}, name="api_article_classifier_delete")
      * @OA\Delete(
      *     tags={"article"},
      *     @OA\Parameter(
@@ -159,7 +161,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         required=true,
      *         @OA\Schema(
      *             type="string",
-     *             default="Evrinoma\ArticleBundle\Dto\TypeApiDto",
+     *             default="Evrinoma\ArticleBundle\Dto\ClassifierApiDto",
      *             readOnly=true
      *         )
      *     ),
@@ -174,13 +176,13 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Delete article type")
+     * @OA\Response(response=200, description="Delete article classifier")
      *
      * @return JsonResponse
      */
     public function deleteAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
+        /** @var ClassifierApiDtoInterface $articleApiDto */
         $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $this->setStatusAccepted();
@@ -194,11 +196,11 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->JsonResponse('Delete article type', $json, $error);
+        return $this->JsonResponse('Delete article classifier', $json, $error);
     }
 
     /**
-     * @Rest\Get("/api/article/type/criteria", options={"expose": true}, name="api_article_type_criteria")
+     * @Rest\Get("/api/article/classifier/criteria", options={"expose": true}, name="api_article_classifier_criteria")
      * @OA\Get(
      *     tags={"article"},
      *     @OA\Parameter(
@@ -208,7 +210,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         required=true,
      *         @OA\Schema(
      *             type="string",
-     *             default="Evrinoma\ArticleBundle\Dto\TypeApiDto",
+     *             default="Evrinoma\ArticleBundle\Dto\ClassifierApiDto",
      *             readOnly=true
      *         )
      *     ),
@@ -245,18 +247,18 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Return article type")
+     * @OA\Response(response=200, description="Return article classifier")
      *
      * @return JsonResponse
      */
     public function criteriaAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
+        /** @var ClassifierApiDtoInterface $articleApiDto */
         $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
-        $group = GroupInterface::API_CRITERIA_ARTICLE_TYPE;
+        $group = GroupInterface::API_CRITERIA_ARTICLE_CLASSIFIER;
 
         try {
             $this->facade->criteria($articleApiDto, $group, $json);
@@ -264,11 +266,11 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Get article type', $json, $error);
+        return $this->setSerializeGroup($group)->JsonResponse('Get article classifier', $json, $error);
     }
 
     /**
-     * @Rest\Get("/api/article/type", options={"expose": true}, name="api_article_type")
+     * @Rest\Get("/api/article/classifier", options={"expose": true}, name="api_article_classifier")
      * @OA\Get(
      *     tags={"article"},
      *     @OA\Parameter(
@@ -278,7 +280,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         required=true,
      *         @OA\Schema(
      *             type="string",
-     *             default="Evrinoma\ArticleBundle\Dto\TypeApiDto",
+     *             default="Evrinoma\ArticleBundle\Dto\ClassifierApiDto",
      *             readOnly=true
      *         )
      *     ),
@@ -293,18 +295,18 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Return article type")
+     * @OA\Response(response=200, description="Return article classifier")
      *
      * @return JsonResponse
      */
     public function getAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
+        /** @var ClassifierApiDtoInterface $articleApiDto */
         $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
-        $group = GroupInterface::API_GET_ARTICLE_TYPE;
+        $group = GroupInterface::API_GET_ARTICLE_CLASSIFIER;
 
         try {
             $this->facade->get($articleApiDto, $group, $json);
@@ -312,7 +314,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
             $error = $this->setRestStatus($e);
         }
 
-        return $this->setSerializeGroup($group)->JsonResponse('Get article type', $json, $error);
+        return $this->setSerializeGroup($group)->JsonResponse('Get article classifier', $json, $error);
     }
 
     /**
@@ -323,16 +325,16 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
     public function setRestStatus(\Exception $e): array
     {
         switch (true) {
-            case $e instanceof TypeCannotBeSavedException:
+            case $e instanceof ClassifierCannotBeSavedException:
                 $this->setStatusNotImplemented();
                 break;
             case $e instanceof UniqueConstraintViolationException:
                 $this->setStatusConflict();
                 break;
-            case $e instanceof TypeNotFoundException:
+            case $e instanceof ClassifierNotFoundException:
                 $this->setStatusNotFound();
                 break;
-            case $e instanceof TypeInvalidException:
+            case $e instanceof ClassifierInvalidException:
                 $this->setStatusUnprocessableEntity();
                 break;
             default:

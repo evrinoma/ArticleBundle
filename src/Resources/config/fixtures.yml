@@ -4,6 +4,11 @@ services:
     tags:
       - { name: doctrine.fixture.orm }
 
+  evrinoma.article.fixtures.classifier:
+    class: Evrinoma\ArticleBundle\Fixtures\ClassifierFixtures
+    tags:
+      - { name: doctrine.fixture.orm }
+
   evrinoma.article.fixtures.type:
     class: Evrinoma\ArticleBundle\Fixtures\TypeFixtures
     tags:

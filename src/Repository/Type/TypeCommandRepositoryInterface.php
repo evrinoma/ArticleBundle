@@ -20,20 +20,20 @@ use Evrinoma\ArticleBundle\Model\Type\TypeInterface;
 interface TypeCommandRepositoryInterface
 {
     /**
-     * @param TypeInterface $article
+     * @param TypeInterface $type
      *
      * @return bool
      *
      * @throws TypeCannotBeSavedException
      */
-    public function save(TypeInterface $article): bool;
+    public function save(TypeInterface $type): bool;
 
     /**
-     * @param TypeInterface $article
+     * @param TypeInterface $type
      *
      * @return bool
      *
      * @throws TypeCannotBeRemovedException
      */
-    public function remove(TypeInterface $article): bool;
+    public function remove(TypeInterface $type): bool;
 }

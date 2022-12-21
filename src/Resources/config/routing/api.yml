@@ -5,3 +5,8 @@ article_api:
 article_type_api:
   resource: "@EvrinomaArticleBundle/Controller/TypeApiController.php"
   type: annotation
+
+article_classifier_api:
+  resource: "@EvrinomaArticleBundle/Controller/ClassifierApiController.php"
+  type: annotation
+

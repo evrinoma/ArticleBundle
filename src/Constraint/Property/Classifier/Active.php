@@ -11,11 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Evrinoma\ArticleBundle\Repository;
+namespace Evrinoma\ArticleBundle\Constraint\Property\Classifier;
 
-interface AliasInterface
+use Evrinoma\UtilsBundle\Constraint\Property\ActiveTrait;
+use Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface;
+
+class Active implements ConstraintInterface
 {
-    public const ARTICLE = 'article';
-    public const TYPE = 'type';
-    public const CLASSIFIER = 'classifier';
+    use ActiveTrait;
 }

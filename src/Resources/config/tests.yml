@@ -1,3 +1,4 @@
 imports:
   - { resource: tests/article.yml }
   - { resource: tests/type.yml }
+  - { resource: tests/classifier.yml }

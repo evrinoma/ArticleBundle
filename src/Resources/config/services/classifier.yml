@@ -1,0 +1,90 @@
+services:
+  Evrinoma\ArticleBundle\Controller\ClassifierApiController:
+    alias: evrinoma.article.classifier.api.controller
+    public: true
+
+  evrinoma.article.classifier.api.controller:
+    class: Evrinoma\ArticleBundle\Controller\ClassifierApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.article.classifier.facade'
+    autowire: true
+
+  evrinoma.article.classifier.facade:
+    class: Evrinoma\ArticleBundle\Facade\Classifier\Facade
+    arguments:
+      - '@evrinoma.article.classifier.command.manager'
+      - '@evrinoma.article.classifier.query.manager'
+      - '@evrinoma.article.adaptor'
+    autowire: true
+
+  Evrinoma\ArticleBundle\Facade\Classifier\FacadeInterface:
+    alias: evrinoma.article.classifier.facade
+
+  evrinoma.article.classifier.factory:
+    class: Evrinoma\ArticleBundle\Factory\Classifier\Factory
+    public: true
+    arguments:
+
+  evrinoma.article.classifier.orm.repository:
+    class: Evrinoma\ArticleBundle\Repository\Orm\Classifier\ClassifierRepository
+    public: true
+    arguments:
+
+  evrinoma.article.classifier.command.manager:
+    class: Evrinoma\ArticleBundle\Manager\Classifier\CommandManager
+    arguments:
+      - '@evrinoma.article.classifier.validator'
+      - '@evrinoma.article.classifier.repository'
+      - '@evrinoma.article.classifier.factory'
+      - '@evrinoma.article.classifier.command.mediator'
+
+  Evrinoma\ArticleBundle\Manager\Classifier\CommandManagerInterface:
+    alias: evrinoma.article.classifier.command.manager
+
+  evrinoma.article.classifier.query.manager:
+    class: Evrinoma\ArticleBundle\Manager\Classifier\QueryManager
+    arguments:
+      - '@evrinoma.article.classifier.repository'
+
+  Evrinoma\ArticleBundle\Manager\Classifier\QueryManagerInterface:
+    alias: evrinoma.article.classifier.query.manager
+
+  evrinoma.article.classifier.validator:
+    class: Evrinoma\ArticleBundle\Validator\ClassifierValidator
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\Validator\ClassifierValidator:
+    alias: evrinoma.article.classifier.validator
+
+  evrinoma.article.classifier.query.orm.mediator:
+    class: Evrinoma\ArticleBundle\Mediator\Classifier\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\Mediator\Classifier\Orm\QueryMediator:
+    alias: evrinoma.article.classifier.query.orm.mediator
+
+  evrinoma.article.classifier.command.mediator:
+    class: Evrinoma\ArticleBundle\Mediator\Classifier\CommandMediator
+    public: true
+
+  Evrinoma\ArticleBundle\Mediator\Classifier\CommandMediator:
+    alias: evrinoma.article.classifier.command.mediator
+
+  Evrinoma\ArticleBundle\Mediator\Classifier\CommandMediatorInterface:
+    alias: evrinoma.article.classifier.command.mediator
+
+  evrinoma.article.classifier.pre.validator:
+    class: Evrinoma\ArticleBundle\PreValidator\Classifier\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\ArticleBundle\PreValidator\Classifier\DtoPreValidator:
+    alias: evrinoma.article.classifier.pre.validator
+
+  Evrinoma\ArticleBundle\PreValidator\Classifier\DtoPreValidatorInterface:
+    alias: evrinoma.article.classifier.pre.validator

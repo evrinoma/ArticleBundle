@@ -11,11 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Evrinoma\ArticleBundle\Repository;
+namespace Evrinoma\ArticleBundle\Facade\Classifier;
 
-interface AliasInterface
+use Evrinoma\UtilsBundle\Facade\FacadeInterface as BaseFacadeInterface;
+
+interface FacadeInterface extends BaseFacadeInterface
 {
-    public const ARTICLE = 'article';
-    public const TYPE = 'type';
-    public const CLASSIFIER = 'classifier';
 }
