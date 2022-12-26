@@ -28,3 +28,6 @@ Evrinoma\ArticleBundle\Model\Article\AbstractArticle:
     preview:
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true
+    description:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
