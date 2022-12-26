@@ -17,13 +17,14 @@ use Evrinoma\UtilsBundle\Entity\ActiveInterface;
 use Evrinoma\UtilsBundle\Entity\AttachmentInterface;
 use Evrinoma\UtilsBundle\Entity\BodyInterface;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtInterface;
+use Evrinoma\UtilsBundle\Entity\DescriptionInterface;
 use Evrinoma\UtilsBundle\Entity\IdInterface;
 use Evrinoma\UtilsBundle\Entity\ImageInterface;
 use Evrinoma\UtilsBundle\Entity\PositionInterface;
 use Evrinoma\UtilsBundle\Entity\PreviewInterface;
 use Evrinoma\UtilsBundle\Entity\TitleInterface;
 
-interface ArticleInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, BodyInterface, TitleInterface, PositionInterface, PreviewInterface, ImageInterface, AttachmentInterface
+interface ArticleInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, BodyInterface, TitleInterface, PositionInterface, PreviewInterface, ImageInterface, AttachmentInterface, DescriptionInterface
 {
     public function hasAttachment(): bool;
 

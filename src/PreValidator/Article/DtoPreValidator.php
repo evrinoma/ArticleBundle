@@ -28,6 +28,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkTitle($dto)
             ->checkClassifier($dto)
             ->checkType($dto)
+            ->checkDescription($dto)
             ->checkPosition($dto)
             ->checkArticle($dto);
     }
@@ -41,6 +42,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkTitle($dto)
             ->checkClassifier($dto)
             ->checkType($dto)
+            ->checkDescription($dto)
             ->checkActive($dto)
             ->checkPosition($dto)
             ->checkArticle($dto);
@@ -50,6 +52,16 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     {
         $this
             ->checkId($dto);
+    }
+
+    private function checkDescription(DtoInterface $dto): self
+    {
+        /** @var ArticleApiDtoInterface $dto */
+        if (!$dto->hasDescription()) {
+            throw new ArticleInvalidException('The Dto has\'t description');
+        }
+
+        return $this;
     }
 
     private function checkPosition(DtoInterface $dto): self

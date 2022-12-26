@@ -34,6 +34,7 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         $filePreview = $this->fileSystem->save($dto->getPreview());
         $fileImage = $this->fileSystem->save($dto->getImage());
         $entity
+            ->setDescription($dto->getDescription())
             ->setTitle($dto->getTitle())
             ->setPosition($dto->getPosition())
             ->setBody($dto->getBody())
@@ -64,6 +65,7 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         $filePreview = $this->fileSystem->save($dto->getPreview());
         $fileImage = $this->fileSystem->save($dto->getImage());
         $entity
+            ->setDescription($dto->getDescription())
             ->setTitle($dto->getTitle())
             ->setPosition($dto->getPosition())
             ->setBody($dto->getBody())

@@ -20,6 +20,7 @@ use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\AttachmentTrait;
 use Evrinoma\UtilsBundle\Entity\BodyTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
+use Evrinoma\UtilsBundle\Entity\DescriptionTrait;
 use Evrinoma\UtilsBundle\Entity\IdTrait;
 use Evrinoma\UtilsBundle\Entity\ImageTrait;
 use Evrinoma\UtilsBundle\Entity\PositionTrait;
@@ -35,6 +36,7 @@ abstract class AbstractArticle implements ArticleInterface
     use AttachmentTrait;
     use BodyTrait;
     use CreateUpdateAtTrait;
+    use DescriptionTrait;
     use IdTrait;
     use ImageTrait;
     use PositionTrait;

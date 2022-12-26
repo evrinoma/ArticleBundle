@@ -16,6 +16,7 @@ namespace Evrinoma\ArticleBundle\Dto\Preserve;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\AttachmentTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\BodyTrait;
+use Evrinoma\DtoCommon\ValueObject\Preserve\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
@@ -27,6 +28,7 @@ trait ArticleApiDtoTrait
     use ActiveTrait;
     use AttachmentTrait;
     use BodyTrait;
+    use DescriptionTrait;
     use IdTrait;
     use ImageTrait;
     use PositionTrait;

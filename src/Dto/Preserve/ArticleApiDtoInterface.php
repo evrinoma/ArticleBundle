@@ -16,12 +16,13 @@ namespace Evrinoma\ArticleBundle\Dto\Preserve;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\AttachmentInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\BodyInterface;
+use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ImageInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleInterface;
 
-interface ArticleApiDtoInterface extends IdInterface, AttachmentInterface, BodyInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface
+interface ArticleApiDtoInterface extends IdInterface, AttachmentInterface, BodyInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface
 {
 }

@@ -18,6 +18,7 @@ use Evrinoma\ArticleBundle\Dto\ArticleApiDtoInterface;
 use Evrinoma\ArticleBundle\Tests\Functional\Helper\BaseArticleTestTrait;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Active;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Body;
+use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Description;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Id;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Position;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Title;
@@ -58,6 +59,7 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
             ArticleApiDtoInterface::POSITION => Position::value(),
             ArticleApiDtoInterface::ACTIVE => Active::value(),
             ArticleApiDtoInterface::BODY => Body::default(),
+            ArticleApiDtoInterface::DESCRIPTION => Description::default(),
             ArticleApiDtoInterface::TYPE => BaseType::defaultData(),
             ArticleApiDtoInterface::CLASSIFIER => BaseClassifier::defaultData(),
         ];

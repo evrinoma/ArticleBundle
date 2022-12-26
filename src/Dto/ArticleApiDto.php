@@ -19,6 +19,7 @@ use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\AttachmentTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\BodyTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
@@ -31,6 +32,7 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
     use ActiveTrait;
     use AttachmentTrait;
     use BodyTrait;
+    use DescriptionTrait;
     use IdTrait;
     use ImageTrait;
     use PositionTrait;
@@ -132,6 +134,7 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
             $image = $request->files->get(ArticleApiDtoInterface::IMAGE);
             $attachment = $request->files->get(ArticleApiDtoInterface::ATTACHMENT);
             $preview = $request->files->get(ArticleApiDtoInterface::PREVIEW);
+            $description = $request->get(ArticleApiDtoInterface::DESCRIPTION);
 
             if ($active) {
                 $this->setActive($active);
@@ -156,6 +159,9 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
             }
             if ($image) {
                 $this->setImage($image);
+            }
+            if ($description) {
+                $this->setDescription($description);
             }
         }
 
