@@ -16,10 +16,12 @@ namespace Evrinoma\ArticleBundle\Dto\Preserve;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\BriefTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\DescriptionTrait;
+use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 
 trait ClassifierApiDtoTrait
 {
     use ActiveTrait;
     use BriefTrait;
     use DescriptionTrait;
+    use IdTrait;
 }

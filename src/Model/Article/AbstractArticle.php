@@ -44,6 +44,13 @@ abstract class AbstractArticle implements ArticleInterface
     use TitleTrait;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     */
+    protected $description;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Evrinoma\ArticleBundle\Model\Type\TypeInterface")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */
