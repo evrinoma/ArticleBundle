@@ -7,9 +7,11 @@ Evrinoma\ArticleBundle\Model\Article\AbstractArticle:
     createdAt:
       type: DateTimeImmutable<'Y-m-d H:i'>
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
     updatedAt:
       type: DateTimeImmutable<'Y-m-d H:i'>
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
     active:
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true
@@ -29,5 +31,9 @@ Evrinoma\ArticleBundle\Model\Article\AbstractArticle:
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true
     description:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    start:
+      type: DateTimeImmutable<'Y-m-d'>
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true
