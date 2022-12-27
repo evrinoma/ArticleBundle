@@ -21,8 +21,9 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ImageInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewInterface;
+use Evrinoma\DtoCommon\ValueObject\Mutable\StartInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleInterface;
 
-interface ArticleApiDtoInterface extends IdInterface, AttachmentInterface, BodyInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface
+interface ArticleApiDtoInterface extends IdInterface, AttachmentInterface, BodyInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
 {
 }

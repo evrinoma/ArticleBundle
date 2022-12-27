@@ -82,5 +82,6 @@ trait BaseArticleTestTrait
         Assert::assertArrayHasKey(ArticleApiDtoInterface::PREVIEW, $entity);
         Assert::assertArrayHasKey(ArticleApiDtoInterface::POSITION, $entity);
         Assert::assertArrayHasKey(ArticleApiDtoInterface::DESCRIPTION, $entity);
+        Assert::assertArrayHasKey(ArticleApiDtoInterface::START, $entity);
     }
 }

@@ -22,9 +22,10 @@ use Evrinoma\UtilsBundle\Entity\IdInterface;
 use Evrinoma\UtilsBundle\Entity\ImageInterface;
 use Evrinoma\UtilsBundle\Entity\PositionInterface;
 use Evrinoma\UtilsBundle\Entity\PreviewInterface;
+use Evrinoma\UtilsBundle\Entity\StartInterface;
 use Evrinoma\UtilsBundle\Entity\TitleInterface;
 
-interface ArticleInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, BodyInterface, TitleInterface, PositionInterface, PreviewInterface, ImageInterface, AttachmentInterface, DescriptionInterface
+interface ArticleInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, BodyInterface, TitleInterface, PositionInterface, PreviewInterface, ImageInterface, AttachmentInterface, DescriptionInterface, StartInterface
 {
     public function hasAttachment(): bool;
 

@@ -22,9 +22,10 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\ImageInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PreviewInterface;
+use Evrinoma\DtoCommon\ValueObject\Immutable\StartInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
 
-interface ArticleApiDtoInterface extends DtoInterface, IdInterface, AttachmentInterface, TitleInterface, BodyInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface
+interface ArticleApiDtoInterface extends DtoInterface, IdInterface, AttachmentInterface, TitleInterface, BodyInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
 {
     public const CLASSIFIER = ClassifierApiDtoInterface::CLASSIFIER;
 

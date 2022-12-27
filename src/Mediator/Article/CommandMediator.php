@@ -43,6 +43,10 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
             ->setUpdatedAt(new \DateTimeImmutable())
             ->setActive($dto->getActive());
 
+        if ($dto->hasStart()) {
+            $entity->setStart(new \DateTimeImmutable($dto->getStart()));
+        }
+
         if ($dto->hasAttachment()) {
             $fileAttachment = $this->fileSystem->save($dto->getAttachment());
             $entity->setAttachment($fileAttachment->getPathname());
@@ -73,6 +77,10 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
             ->setImage($fileImage->getPathname())
             ->setCreatedAt(new \DateTimeImmutable())
             ->setActiveToActive();
+
+        if ($dto->hasStart()) {
+            $entity->setStart(new \DateTimeImmutable($dto->getStart()));
+        }
 
         if ($dto->hasAttachment()) {
             $fileAttachment = $this->fileSystem->save($dto->getAttachment());

@@ -21,6 +21,7 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PreviewTrait;
+use Evrinoma\DtoCommon\ValueObject\Preserve\StartTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\TitleTrait;
 
 trait ArticleApiDtoTrait
@@ -33,5 +34,6 @@ trait ArticleApiDtoTrait
     use ImageTrait;
     use PositionTrait;
     use PreviewTrait;
+    use StartTrait;
     use TitleTrait;
 }

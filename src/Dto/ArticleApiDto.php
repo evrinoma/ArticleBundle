@@ -24,6 +24,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ImageTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\StartTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleTrait;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,6 +38,7 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
     use ImageTrait;
     use PositionTrait;
     use PreviewTrait;
+    use StartTrait;
     use TitleTrait;
 
     /**
@@ -135,6 +137,7 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
             $attachment = $request->files->get(ArticleApiDtoInterface::ATTACHMENT);
             $preview = $request->files->get(ArticleApiDtoInterface::PREVIEW);
             $description = $request->get(ArticleApiDtoInterface::DESCRIPTION);
+            $start = $request->get(ArticleApiDtoInterface::START);
 
             if ($active) {
                 $this->setActive($active);
@@ -162,6 +165,9 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
             }
             if ($description) {
                 $this->setDescription($description);
+            }
+            if ($start) {
+                $this->setStart($start);
             }
         }
 

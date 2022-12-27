@@ -21,6 +21,7 @@ use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Body;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Description;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Id;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Position;
+use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Start;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Title;
 use Evrinoma\TestUtilsBundle\Action\AbstractServiceTest;
 use Evrinoma\TestUtilsBundle\Browser\ApiBrowserTestInterface;
@@ -62,6 +63,7 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
             ArticleApiDtoInterface::DESCRIPTION => Description::default(),
             ArticleApiDtoInterface::TYPE => BaseType::defaultData(),
             ArticleApiDtoInterface::CLASSIFIER => BaseClassifier::defaultData(),
+            ArticleApiDtoInterface::START => Start::default(),
         ];
     }
 
