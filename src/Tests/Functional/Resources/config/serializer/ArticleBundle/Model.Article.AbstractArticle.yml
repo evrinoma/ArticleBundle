@@ -30,10 +30,21 @@ Evrinoma\ArticleBundle\Model\Article\AbstractArticle:
     preview:
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true
+    attachment:
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
     description:
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true
     start:
       type: DateTimeImmutable<'Y-m-d'>
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    type:
+      type: Evrinoma\ArticleBundle\Entity\Type\BaseType
+      groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
+      expose: true
+    classifier:
+      type: Evrinoma\ArticleBundle\Entity\Classifier\BaseClassifier
       groups: [ API_GET_ARTICLE, API_POST_ARTICLE, API_PUT_ARTICLE, ]
       expose: true

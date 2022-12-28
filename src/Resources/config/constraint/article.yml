@@ -14,6 +14,11 @@ services:
   evrinoma.article.constraint.property.article.position:
     class: Evrinoma\ArticleBundle\Constraint\Property\Article\Position
 
+  evrinoma.article.constraint.property.article.image:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Image
+
+  evrinoma.article.constraint.property.article.description:
+    class: Evrinoma\ArticleBundle\Constraint\Property\Article\Description
+
   evrinoma.article.constraint.complex.article.article:
     class: Evrinoma\ArticleBundle\Constraint\Complex\Article\Article
-

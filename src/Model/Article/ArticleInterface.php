@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Model\Article;
 
+use Evrinoma\ArticleBundle\Model\Classifier\ClassifierInterface;
+use Evrinoma\ArticleBundle\Model\Type\TypeInterface;
 use Evrinoma\UtilsBundle\Entity\ActiveInterface;
 use Evrinoma\UtilsBundle\Entity\AttachmentInterface;
 use Evrinoma\UtilsBundle\Entity\BodyInterface;
@@ -30,4 +32,12 @@ interface ArticleInterface extends ActiveInterface, CreateUpdateAtInterface, IdI
     public function hasAttachment(): bool;
 
     public function resetAttachment(): ArticleInterface;
+
+    public function setType(TypeInterface $type): ArticleInterface;
+
+    public function getType(): TypeInterface;
+
+    public function setClassifier(ClassifierInterface $classifier): ArticleInterface;
+
+    public function getClassifier(): ClassifierInterface;
 }
