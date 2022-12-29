@@ -24,6 +24,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     {
         $this
             ->checkBody($dto)
+            ->checkImage($dto)
             ->checkPreview($dto)
             ->checkTitle($dto)
             ->checkClassifier($dto)
@@ -38,6 +39,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         $this
             ->checkId($dto)
             ->checkBody($dto)
+            ->checkImage($dto)
             ->checkPreview($dto)
             ->checkTitle($dto)
             ->checkClassifier($dto)
@@ -126,6 +128,16 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         /** @var ArticleApiDtoInterface $dto */
         if (!$dto->hasPreview()) {
             throw new ArticleInvalidException('The Dto has\'t Preview file');
+        }
+
+        return $this;
+    }
+
+    private function checkImage(DtoInterface $dto): self
+    {
+        /** @var ArticleApiDtoInterface $dto */
+        if (!$dto->hasImage()) {
+            throw new ArticleInvalidException('The Dto has\'t Image file');
         }
 
         return $this;

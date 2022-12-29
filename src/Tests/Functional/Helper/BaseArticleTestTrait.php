@@ -29,10 +29,20 @@ trait BaseArticleTestTrait
         $fileImage = $fileAttachment = $filePreview = new UploadedFile($path, 'my_file');
 
         static::$files = [
-            ArticleApiDtoInterface::IMAGE => $fileImage,
-            ArticleApiDtoInterface::PREVIEW => $filePreview,
-            ArticleApiDtoInterface::ATTACHMENT => $fileAttachment,
+            static::getDtoClass() => [
+                ArticleApiDtoInterface::IMAGE => $fileImage,
+                ArticleApiDtoInterface::PREVIEW => $filePreview,
+                ArticleApiDtoInterface::ATTACHMENT => $fileAttachment,
+            ],
         ];
+    }
+
+    protected function compareResults(array $value, array $entity, array $query): void
+    {
+        Assert::assertEquals($value[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], $entity[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID]);
+        Assert::assertEquals($query[ArticleApiDtoInterface::TITLE], $entity[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::TITLE]);
+        Assert::assertEquals($query[ArticleApiDtoInterface::BODY], $entity[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::BODY]);
+        Assert::assertEquals($query[ArticleApiDtoInterface::POSITION], $entity[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::POSITION]);
     }
 
     protected function assertGet(string $id): array

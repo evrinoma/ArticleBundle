@@ -59,8 +59,8 @@ class ClassifierChoiceType extends AbstractType
 
             return $value;
         };
-        $resolver->setDefault(RestChoiceType::REST_COMPONENT_NAME, 'type');
-        $resolver->setDefault(RestChoiceType::REST_DESCRIPTION, 'typeList');
+        $resolver->setDefault(RestChoiceType::REST_COMPONENT_NAME, 'classifier');
+        $resolver->setDefault(RestChoiceType::REST_DESCRIPTION, 'classifierList');
         $resolver->setDefault(RestChoiceType::REST_CHOICES, $callback);
     }
 

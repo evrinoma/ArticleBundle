@@ -69,15 +69,18 @@ final class ArticleApiController extends AbstractWrappedApiController implements
      *                     @OA\Schema(
      *                         type="object",
      *                         @OA\Property(property="class", type="string", default="Evrinoma\ArticleBundle\Dto\ArticleApiDto"),
-     *                         @OA\Property(property="active", type="string"),
      *                         @OA\Property(property="body", type="string"),
      *                         @OA\Property(property="title", type="string"),
      *                         @OA\Property(property="position", type="int"),
+     *                         @OA\Property(property="start", type="string"),
      *                         @OA\Property(property="classifier[brief]", type="string"),
      *                         @OA\Property(property="type[brief]", type="string"),
-     *                         @OA\Property(property="video", type="string",  format="binary"),
-     *                         @OA\Property(property="preview", type="string",  format="binary"),
-     *                         @OA\Property(property="attachment", type="string",  format="binary")
+     *                         @OA\Property(property="image", type="string"),
+     *                         @OA\Property(property="preview", type="string"),
+     *                         @OA\Property(property="attachment", type="string"),
+     *                         @OA\Property(property="Evrinoma\ArticleBundle\Dto\ArticleApiDto[image]", type="string",  format="binary"),
+     *                         @OA\Property(property="Evrinoma\ArticleBundle\Dto\ArticleApiDto[preview]", type="string",  format="binary"),
+     *                         @OA\Property(property="Evrinoma\ArticleBundle\Dto\ArticleApiDto[attachment]", type="string",  format="binary")
      *                     )
      *                 }
      *             )
@@ -126,12 +129,16 @@ final class ArticleApiController extends AbstractWrappedApiController implements
      *                         @OA\Property(property="active", type="string"),
      *                         @OA\Property(property="body", type="string"),
      *                         @OA\Property(property="title", type="string"),
+     *                         @OA\Property(property="start", type="string"),
      *                         @OA\Property(property="position", type="int"),
      *                         @OA\Property(property="classifier[brief]", type="string"),
      *                         @OA\Property(property="type[brief]", type="string"),
-     *                         @OA\Property(property="video", type="string",  format="binary"),
-     *                         @OA\Property(property="preview", type="string",  format="binary"),
-     *                         @OA\Property(property="attachment", type="string",  format="binary")
+     *                         @OA\Property(property="image", type="string"),
+     *                         @OA\Property(property="preview", type="string"),
+     *                         @OA\Property(property="attachment", type="string"),
+     *                         @OA\Property(property="Evrinoma\ArticleBundle\Dto\ArticleApiDto[image]", type="string",  format="binary"),
+     *                         @OA\Property(property="Evrinoma\ArticleBundle\Dto\ArticleApiDto[preview]", type="string",  format="binary"),
+     *                         @OA\Property(property="Evrinoma\ArticleBundle\Dto\ArticleApiDto[attachment]", type="string",  format="binary")
      *                     )
      *                 }
      *             )

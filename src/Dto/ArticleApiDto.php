@@ -26,6 +26,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\StartTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleTrait;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
 class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
@@ -133,11 +134,49 @@ class ArticleApiDto extends AbstractDto implements ArticleApiDtoInterface
             $title = $request->get(ArticleApiDtoInterface::TITLE);
             $position = $request->get(ArticleApiDtoInterface::POSITION);
             $body = $request->get(ArticleApiDtoInterface::BODY);
-            $image = $request->files->get(ArticleApiDtoInterface::IMAGE);
-            $attachment = $request->files->get(ArticleApiDtoInterface::ATTACHMENT);
-            $preview = $request->files->get(ArticleApiDtoInterface::PREVIEW);
             $description = $request->get(ArticleApiDtoInterface::DESCRIPTION);
             $start = $request->get(ArticleApiDtoInterface::START);
+
+            $files = ($request->files->has($this->getClass())) ? $request->files->get($this->getClass()) : [];
+
+            try {
+                if (\array_key_exists(ArticleApiDtoInterface::IMAGE, $files)) {
+                    $image = $files[ArticleApiDtoInterface::IMAGE];
+                } else {
+                    $image = $request->get(ArticleApiDtoInterface::IMAGE);
+                    if (null !== $image) {
+                        $image = new File($image);
+                    }
+                }
+            } catch (\Exception $e) {
+                $image = null;
+            }
+
+            try {
+                if (\array_key_exists(ArticleApiDtoInterface::PREVIEW, $files)) {
+                    $preview = $files[ArticleApiDtoInterface::PREVIEW];
+                } else {
+                    $preview = $request->get(ArticleApiDtoInterface::PREVIEW);
+                    if (null !== $preview) {
+                        $preview = new File($preview);
+                    }
+                }
+            } catch (\Exception $e) {
+                $preview = null;
+            }
+
+            try {
+                if (\array_key_exists(ArticleApiDtoInterface::ATTACHMENT, $files)) {
+                    $attachment = $files[ArticleApiDtoInterface::ATTACHMENT];
+                } else {
+                    $attachment = $request->get(ArticleApiDtoInterface::ATTACHMENT);
+                    if (null !== $attachment) {
+                        $attachment = new File($attachment);
+                    }
+                }
+            } catch (\Exception $e) {
+                $attachment = null;
+            }
 
             if ($active) {
                 $this->setActive($active);

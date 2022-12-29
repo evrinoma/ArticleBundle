@@ -20,7 +20,9 @@ use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Active;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Body;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Description;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Id;
+use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Image;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Position;
+use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Preview;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Start;
 use Evrinoma\ArticleBundle\Tests\Functional\ValueObject\Article\Title;
 use Evrinoma\TestUtilsBundle\Action\AbstractServiceTest;
@@ -64,6 +66,8 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
             ArticleApiDtoInterface::TYPE => BaseType::defaultData(),
             ArticleApiDtoInterface::CLASSIFIER => BaseClassifier::defaultData(),
             ArticleApiDtoInterface::START => Start::default(),
+            ArticleApiDtoInterface::IMAGE => Image::default(),
+            ArticleApiDtoInterface::PREVIEW => Preview::default(),
         ];
     }
 
@@ -115,15 +119,21 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
 
     public function actionPut(): void
     {
+        $query = static::getDefault([ArticleApiDtoInterface::ID => Id::value(), ArticleApiDtoInterface::TITLE => Title::value(), ArticleApiDtoInterface::BODY => Body::value(), ArticleApiDtoInterface::POSITION => Position::value()]);
+
         $find = $this->assertGet(Id::value());
 
-        $updated = $this->put(static::getDefault([ArticleApiDtoInterface::ID => Id::value(), ArticleApiDtoInterface::TITLE => Title::value(), ArticleApiDtoInterface::BODY => Body::value(), ArticleApiDtoInterface::POSITION => Position::value()]));
+        $updated = $this->put($query);
         $this->testResponseStatusOK();
 
-        Assert::assertEquals($find[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], $updated[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID]);
-        Assert::assertEquals(Title::value(), $updated[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::TITLE]);
-        Assert::assertEquals(Body::value(), $updated[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::BODY]);
-        Assert::assertEquals(Position::value(), $updated[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::POSITION]);
+        $this->compareResults($find, $updated, $query);
+
+        static::$files = [];
+
+        $updated = $this->put($query);
+        $this->testResponseStatusOK();
+
+        $this->compareResults($find, $updated, $query);
     }
 
     public function actionGet(): void
@@ -184,17 +194,25 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        unset(static::$files[ArticleApiDtoInterface::IMAGE]);
+        unset(static::$files[static::getDtoClass()][ArticleApiDtoInterface::IMAGE]);
+        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::POSITION => Position::empty(), ArticleApiDtoInterface::IMAGE => Image::empty()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        unset(static::$files[ArticleApiDtoInterface::PREVIEW]);
+        unset(static::$files[static::getDtoClass()][ArticleApiDtoInterface::PREVIEW]);
+        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::POSITION => Position::empty(), ArticleApiDtoInterface::PREVIEW => Preview::empty()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID]]);
+        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::PREVIEW => Preview::empty(), ArticleApiDtoInterface::IMAGE => Image::empty()]);
+        static::$files[static::getDtoClass()] = [];
+
+        $this->put($query);
+        $this->testResponseStatusUnprocessable();
+
+        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::PREVIEW => Preview::empty(), ArticleApiDtoInterface::IMAGE => Image::empty()]);
         static::$files = [];
 
         $this->put($query);
