@@ -110,7 +110,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 example={
-     *                     "class": "Evrinoma\ArticleBundle\Dto\TypeApiDtoo",
+     *                     "class": "Evrinoma\ArticleBundle\Dto\TypeApiDto",
      *                     "id": "48",
      *                     "active": "b",
      *                     "brief": "news",
