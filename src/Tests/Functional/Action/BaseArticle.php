@@ -195,13 +195,13 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][ArticleApiDtoInterface::IMAGE]);
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::POSITION => Position::empty(), ArticleApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::IMAGE => Image::empty()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][ArticleApiDtoInterface::PREVIEW]);
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::POSITION => Position::empty(), ArticleApiDtoInterface::PREVIEW => Preview::empty()]);
+        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::PREVIEW => Preview::empty()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();

@@ -19,23 +19,32 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class DecoratorPass extends AbstractRecursivePass
 {
+    private array $services = ['article'];
+
     /**
      * {@inheritDoc}
      */
     public function process(ContainerBuilder $container)
     {
-        $decoratorQuery = $container->hasParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.decorates.query');
+        foreach ($this->services as $alias) {
+            $this->wireDecorates($container, $alias);
+        }
+    }
+
+    private function wireDecorates(ContainerBuilder $container, string $name)
+    {
+        $decoratorQuery = $container->hasParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.'.$name.'.decorates.query');
         if ($decoratorQuery) {
-            $decoratorQuery = $container->getParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.decorates.query');
+            $decoratorQuery = $container->getParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.'.$name.'.decorates.query');
             $queryMediator = $container->getDefinition($decoratorQuery);
-            $repository = $container->getDefinition('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.repository');
+            $repository = $container->getDefinition('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.'.$name.'.repository');
             $repository->setArgument(2, $queryMediator);
         }
-        $decoratorCommand = $container->hasParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.decorates.command');
+        $decoratorCommand = $container->hasParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.'.$name.'.decorates.command');
         if ($decoratorCommand) {
-            $decoratorCommand = $container->getParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.decorates.command');
+            $decoratorCommand = $container->getParameter('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.'.$name.'.decorates.command');
             $commandMediator = $container->getDefinition($decoratorCommand);
-            $commandManager = $container->getDefinition('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.command.manager');
+            $commandManager = $container->getDefinition('evrinoma.'.EvrinomaArticleBundle::BUNDLE.'.'.$name.'.command.manager');
             $commandManager->setArgument(3, $commandMediator);
         }
     }

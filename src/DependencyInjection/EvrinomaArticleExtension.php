@@ -143,10 +143,10 @@ class EvrinomaArticleExtension extends Extension
                 if (null !== $service) {
                     switch ($key) {
                         case 'command':
-                            $remap['command'] = 'evrinoma.'.$this->getAlias().'.decorates.command';
+                            $remap['command'] = 'evrinoma.'.$this->getAlias().'.article.decorates.command';
                             break;
                         case 'query':
-                            $remap['query'] = 'evrinoma.'.$this->getAlias().'.decorates.query';
+                            $remap['query'] = 'evrinoma.'.$this->getAlias().'.article.decorates.query';
                             break;
                     }
                 }
@@ -165,13 +165,13 @@ class EvrinomaArticleExtension extends Extension
                 if (null !== $service) {
                     switch ($key) {
                         case 'pre_validator':
-                            $remap['pre_validator'] = 'evrinoma.'.$this->getAlias().'.services.pre.validator';
+                            $remap['pre_validator'] = 'evrinoma.'.$this->getAlias().'.article.services.pre.validator';
                             break;
                         case 'handler':
-                            $remap['handler'] = 'evrinoma.'.$this->getAlias().'.services.handler';
+                            $remap['handler'] = 'evrinoma.'.$this->getAlias().'.article.services.handler';
                             break;
                         case 'file_system':
-                            $remap['file_system'] = 'evrinoma.'.$this->getAlias().'.services.system.file_system';
+                            $remap['file_system'] = 'evrinoma.'.$this->getAlias().'.article.services.system.file_system';
                             break;
                     }
                 }
