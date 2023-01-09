@@ -40,8 +40,6 @@ services:
       - '@evrinoma.article.article.repository'
       - '@evrinoma.article.article.factory'
       - '@evrinoma.article.article.command.mediator'
-      - '@evrinoma.article.classifier.query.manager'
-      - '@evrinoma.article.type.query.manager'
 
   Evrinoma\ArticleBundle\Manager\Article\CommandManagerInterface:
     alias: evrinoma.article.article.command.manager
@@ -75,6 +73,8 @@ services:
     public: true
     arguments:
       - '@evrinoma.article.article.system.file_system'
+      - '@evrinoma.article.classifier.query.manager'
+      - '@evrinoma.article.type.query.manager'
 
   Evrinoma\ArticleBundle\Mediator\Article\CommandMediator:
     alias: evrinoma.article.article.command.mediator

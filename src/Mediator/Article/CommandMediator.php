@@ -14,6 +14,10 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Mediator\Article;
 
 use Evrinoma\ArticleBundle\Dto\ArticleApiDtoInterface;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeCreatedException;
+use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeSavedException;
+use Evrinoma\ArticleBundle\Manager\Classifier\QueryManagerInterface as ClassifierQueryManagerInterface;
+use Evrinoma\ArticleBundle\Manager\Type\QueryManagerInterface as TypeQueryManagerInterface;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
 use Evrinoma\ArticleBundle\System\FileSystemInterface;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
@@ -22,10 +26,14 @@ use Evrinoma\UtilsBundle\Mediator\AbstractCommandMediator;
 class CommandMediator extends AbstractCommandMediator implements CommandMediatorInterface
 {
     private FileSystemInterface $fileSystem;
+    private ClassifierQueryManagerInterface $classifierQueryManager;
+    private TypeQueryManagerInterface $typeQueryManager;
 
-    public function __construct(FileSystemInterface $fileSystem)
+    public function __construct(FileSystemInterface $fileSystem, ClassifierQueryManagerInterface $classifierQueryManager, TypeQueryManagerInterface $typeQueryManager)
     {
         $this->fileSystem = $fileSystem;
+        $this->classifierQueryManager = $classifierQueryManager;
+        $this->typeQueryManager = $typeQueryManager;
     }
 
     public function onUpdate(DtoInterface $dto, $entity): ArticleInterface
@@ -33,6 +41,19 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         /* @var $dto ArticleApiDtoInterface */
         $filePreview = $this->fileSystem->save($dto->getPreview());
         $fileImage = $this->fileSystem->save($dto->getImage());
+
+        try {
+            $entity->setType($this->typeQueryManager->proxy($dto->getTypeApiDto()));
+        } catch (\Exception $e) {
+            throw new ArticleCannotBeSavedException($e->getMessage());
+        }
+
+        try {
+            $entity->setClassifier($this->classifierQueryManager->proxy($dto->getClassifierApiDto()));
+        } catch (\Exception $e) {
+            throw new ArticleCannotBeSavedException($e->getMessage());
+        }
+
         $entity
             ->setDescription($dto->getDescription())
             ->setTitle($dto->getTitle())
@@ -68,6 +89,19 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         /* @var $dto ArticleApiDtoInterface */
         $filePreview = $this->fileSystem->save($dto->getPreview());
         $fileImage = $this->fileSystem->save($dto->getImage());
+
+        try {
+            $entity->setType($this->typeQueryManager->proxy($dto->getTypeApiDto()));
+        } catch (\Exception $e) {
+            throw new ArticleCannotBeCreatedException($e->getMessage());
+        }
+
+        try {
+            $entity->setClassifier($this->classifierQueryManager->proxy($dto->getClassifierApiDto()));
+        } catch (\Exception $e) {
+            throw new ArticleCannotBeCreatedException($e->getMessage());
+        }
+
         $entity
             ->setDescription($dto->getDescription())
             ->setTitle($dto->getTitle())

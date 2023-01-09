@@ -20,8 +20,6 @@ use Evrinoma\ArticleBundle\Exception\Article\ArticleCannotBeSavedException;
 use Evrinoma\ArticleBundle\Exception\Article\ArticleInvalidException;
 use Evrinoma\ArticleBundle\Exception\Article\ArticleNotFoundException;
 use Evrinoma\ArticleBundle\Factory\Article\FactoryInterface;
-use Evrinoma\ArticleBundle\Manager\Classifier\QueryManagerInterface as ClassifierQueryManagerInterface;
-use Evrinoma\ArticleBundle\Manager\Type\QueryManagerInterface as TypeQueryManagerInterface;
 use Evrinoma\ArticleBundle\Mediator\Article\CommandMediatorInterface;
 use Evrinoma\ArticleBundle\Model\Article\ArticleInterface;
 use Evrinoma\ArticleBundle\Repository\Article\ArticleRepositoryInterface;
@@ -33,17 +31,13 @@ final class CommandManager implements CommandManagerInterface
     private ValidatorInterface            $validator;
     private FactoryInterface           $factory;
     private CommandMediatorInterface      $mediator;
-    private ClassifierQueryManagerInterface $classifierQueryManager;
-    private TypeQueryManagerInterface $typeQueryManager;
 
-    public function __construct(ValidatorInterface $validator, ArticleRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator, ClassifierQueryManagerInterface $classifierQueryManager, TypeQueryManagerInterface $typeQueryManager)
+    public function __construct(ValidatorInterface $validator, ArticleRepositoryInterface $repository, FactoryInterface $factory, CommandMediatorInterface $mediator)
     {
         $this->validator = $validator;
         $this->repository = $repository;
         $this->factory = $factory;
         $this->mediator = $mediator;
-        $this->classifierQueryManager = $classifierQueryManager;
-        $this->typeQueryManager = $typeQueryManager;
     }
 
     /**
@@ -58,18 +52,6 @@ final class CommandManager implements CommandManagerInterface
     public function post(ArticleApiDtoInterface $dto): ArticleInterface
     {
         $article = $this->factory->create($dto);
-
-        try {
-            $article->setType($this->typeQueryManager->proxy($dto->getTypeApiDto()));
-        } catch (\Exception $e) {
-            throw new ArticleCannotBeCreatedException($e->getMessage());
-        }
-
-        try {
-            $article->setClassifier($this->classifierQueryManager->proxy($dto->getClassifierApiDto()));
-        } catch (\Exception $e) {
-            throw new ArticleCannotBeCreatedException($e->getMessage());
-        }
 
         $this->mediator->onCreate($dto, $article);
 
@@ -101,18 +83,6 @@ final class CommandManager implements CommandManagerInterface
             $article = $this->repository->find($dto->idToString());
         } catch (ArticleNotFoundException $e) {
             throw $e;
-        }
-
-        try {
-            $article->setType($this->typeQueryManager->proxy($dto->getTypeApiDto()));
-        } catch (\Exception $e) {
-            throw new ArticleCannotBeSavedException($e->getMessage());
-        }
-
-        try {
-            $article->setClassifier($this->classifierQueryManager->proxy($dto->getClassifierApiDto()));
-        } catch (\Exception $e) {
-            throw new ArticleCannotBeSavedException($e->getMessage());
         }
 
         $this->mediator->onUpdate($dto, $article);
