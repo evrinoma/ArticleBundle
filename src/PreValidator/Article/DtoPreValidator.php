@@ -30,8 +30,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkClassifier($dto)
             ->checkType($dto)
             ->checkDescription($dto)
-            ->checkPosition($dto)
-            ->checkArticle($dto);
+            ->checkPosition($dto);
     }
 
     public function onPut(DtoInterface $dto): void
@@ -46,8 +45,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkType($dto)
             ->checkDescription($dto)
             ->checkActive($dto)
-            ->checkPosition($dto)
-            ->checkArticle($dto);
+            ->checkPosition($dto);
     }
 
     public function onDelete(DtoInterface $dto): void
@@ -112,13 +110,6 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         if (!$dto->hasActive()) {
             throw new ArticleInvalidException('The Dto has\'t active');
         }
-
-        return $this;
-    }
-
-    private function checkArticle(DtoInterface $dto): self
-    {
-        /* @var ArticleApiDtoInterface $dto */
 
         return $this;
     }
