@@ -150,7 +150,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
                     ->setAttachment($record[ArticleApiDtoInterface::ATTACHMENT]);
             }
 
-            $this->expandEntity($entity);
+            $this->expandEntity($entity, $record);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);

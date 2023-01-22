@@ -89,7 +89,7 @@ class ClassifierFixtures extends AbstractFixture implements FixtureGroupInterfac
                 ->setDescription($record[ClassifierApiDtoInterface::DESCRIPTION])
             ;
 
-            $this->expandEntity($entity);
+            $this->expandEntity($entity, $record);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
