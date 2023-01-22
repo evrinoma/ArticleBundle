@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Dto\Preserve;
 
+use Evrinoma\ArticleBundle\DtoCommon\ValueObject\Mutable\ClassifierApiDtoInterface;
+use Evrinoma\ArticleBundle\DtoCommon\ValueObject\Mutable\TypeApiDtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\AttachmentInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\BodyInterface;
@@ -24,6 +26,6 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\PreviewInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\StartInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleInterface;
 
-interface ArticleApiDtoInterface extends IdInterface, AttachmentInterface, BodyInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
+interface ArticleApiDtoInterface extends IdInterface, AttachmentInterface, BodyInterface, TitleInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface, TypeApiDtoInterface, ClassifierApiDtoInterface
 {
 }

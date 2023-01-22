@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Dto\Preserve;
 
+use Evrinoma\ArticleBundle\DtoCommon\ValueObject\Preserve\ClassifierApiDtoTrait;
+use Evrinoma\ArticleBundle\DtoCommon\ValueObject\Preserve\TypeApiDtoTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\AttachmentTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\BodyTrait;
@@ -29,6 +31,7 @@ trait ArticleApiDtoTrait
     use ActiveTrait;
     use AttachmentTrait;
     use BodyTrait;
+    use ClassifierApiDtoTrait;
     use DescriptionTrait;
     use IdTrait;
     use ImageTrait;
@@ -36,4 +39,5 @@ trait ArticleApiDtoTrait
     use PreviewTrait;
     use StartTrait;
     use TitleTrait;
+    use TypeApiDtoTrait;
 }

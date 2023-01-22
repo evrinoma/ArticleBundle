@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Evrinoma\ArticleBundle\Dto;
 
+use Evrinoma\ArticleBundle\DtoCommon\ValueObject\Immutable\ClassifierApiDtoInterface;
+use Evrinoma\ArticleBundle\DtoCommon\ValueObject\Immutable\TypeApiDtoInterface;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\ActiveInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\AttachmentInterface;
@@ -25,17 +27,6 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\PreviewInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\StartInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
 
-interface ArticleApiDtoInterface extends DtoInterface, IdInterface, AttachmentInterface, TitleInterface, BodyInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface
+interface ArticleApiDtoInterface extends DtoInterface, IdInterface, AttachmentInterface, TitleInterface, BodyInterface, PositionInterface, ActiveInterface, PreviewInterface, ImageInterface, DescriptionInterface, StartInterface, ClassifierApiDtoInterface, TypeApiDtoInterface
 {
-    public const CLASSIFIER = ClassifierApiDtoInterface::CLASSIFIER;
-
-    public const TYPE = TypeApiDtoInterface::TYPE;
-
-    public function hasTypeApiDto(): bool;
-
-    public function getTypeApiDto(): TypeApiDtoInterface;
-
-    public function hasClassifierApiDto(): bool;
-
-    public function getClassifierApiDto(): ClassifierApiDtoInterface;
 }
