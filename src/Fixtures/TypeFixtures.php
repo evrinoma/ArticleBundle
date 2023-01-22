@@ -81,12 +81,15 @@ class TypeFixtures extends AbstractFixture implements FixtureGroupInterface, Ord
         $short = self::getReferenceName();
         $i = 0;
 
-        foreach (static::$data as $record) {
-            $entity = new static::$class();
+        foreach ($this->getData() as $record) {
+            $entity = $this->getEntity();
             $entity
                 ->setActive($record[TypeApiDtoInterface::ACTIVE])
                 ->setBrief($record[TypeApiDtoInterface::BRIEF])
-                ->setDescription($record[TypeApiDtoInterface::DESCRIPTION]);
+                ->setDescription($record[TypeApiDtoInterface::DESCRIPTION])
+            ;
+
+            $this->expandEntity($entity);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);

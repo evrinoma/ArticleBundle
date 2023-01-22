@@ -129,8 +129,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
         $shortType = TypeFixtures::getReferenceName();
         $i = 0;
 
-        foreach (static::$data as $record) {
-            $entity = new static::$class();
+        foreach ($this->getData() as $record) {
+            $entity = $this->getEntity();
             $entity
                 ->setPreview($record[ArticleApiDtoInterface::PREVIEW])
                 ->setActive($record[ArticleApiDtoInterface::ACTIVE])
@@ -149,6 +149,8 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
                 $entity
                     ->setAttachment($record[ArticleApiDtoInterface::ATTACHMENT]);
             }
+
+            $this->expandEntity($entity);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
