@@ -25,7 +25,7 @@
                  недостающие значения можно разрешить только на уровне Mediator
         entity: App\Article\Entity\Article сущность
         constraints: Вкл/выкл проверки полей сущности по умолчанию 
-        dto_class: App\Article\Dto\ArticleDto класс dto с которым работает сущность
+        dto: App\Article\Dto\ArticleDto класс dto с которым работает сущность
         decorates:
           command - декоратор mediator команд статьи
           query - декоратор mediator запросов статьи
