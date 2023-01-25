@@ -36,23 +36,23 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
     public function createQuery(DtoInterface $dto, QueryBuilderInterface $builder): void
     {
         $alias = $this->alias();
-
         /** @var $dto ArticleApiDtoInterface */
+        $aliasType = AliasInterface::TYPE;
+        $builder
+            ->leftJoin($alias.'.type', $aliasType)
+            ->addSelect($aliasType);
+
         if ($dto->hasTypeApiDto() && $dto->getTypeApiDto()->hasBrief()) {
-            $aliasType = AliasInterface::TYPE;
-            $builder
-                ->leftJoin($alias.'.type', $aliasType)
-                ->addSelect($aliasType)
-                ->andWhere($aliasType.'.brief like :briefType')
-                ->setParameter('briefType', '%'.$dto->getTypeApiDto()->getBrief().'%');
+            $builder->andWhere($aliasType.'.brief like :briefType')
+            ->setParameter('briefType', '%'.$dto->getTypeApiDto()->getBrief().'%');
         }
+        $aliasClassifier = AliasInterface::CLASSIFIER;
+        $builder
+            ->leftJoin($alias.'.classifier', $aliasClassifier)
+            ->addSelect($aliasClassifier);
 
         if ($dto->hasClassifierApiDto() && $dto->getClassifierApiDto()->hasBrief()) {
-            $aliasClassifier = AliasInterface::CLASSIFIER;
-            $builder
-                ->leftJoin($alias.'.classifier', $aliasClassifier)
-                ->addSelect($aliasClassifier)
-                ->andWhere($aliasClassifier.'.brief like :briefClassifier')
+            $builder->andWhere($aliasClassifier.'.brief like :briefClassifier')
                 ->setParameter('briefClassifier', '%'.$dto->getClassifierApiDto()->getBrief().'%');
         }
 
