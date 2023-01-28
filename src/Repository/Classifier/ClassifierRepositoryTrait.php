@@ -27,7 +27,7 @@ trait ClassifierRepositoryTrait
     private QueryMediatorInterface $mediator;
 
     /**
-     * @param ClassifierInterface $сlassifier
+     * @param ClassifierInterface $classifier
      *
      * @return bool
      *
@@ -46,7 +46,7 @@ trait ClassifierRepositoryTrait
     }
 
     /**
-     * @param ClassifierInterface $сlassifier
+     * @param ClassifierInterface $classifier
      *
      * @return bool
      */

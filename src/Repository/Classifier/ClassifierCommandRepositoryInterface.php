@@ -20,7 +20,7 @@ use Evrinoma\ArticleBundle\Model\Classifier\ClassifierInterface;
 interface ClassifierCommandRepositoryInterface
 {
     /**
-     * @param ClassifierInterface $сlassifier
+     * @param ClassifierInterface $classifier
      *
      * @return bool
      *
@@ -29,7 +29,7 @@ interface ClassifierCommandRepositoryInterface
     public function save(ClassifierInterface $classifier): bool;
 
     /**
-     * @param ClassifierInterface $сlassifier
+     * @param ClassifierInterface $classifier
      *
      * @return bool
      *
