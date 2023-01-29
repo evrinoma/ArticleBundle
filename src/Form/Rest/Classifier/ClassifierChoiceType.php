@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Form\Rest\Classifier;
 
 use Doctrine\DBAL\Exception\TableNotFoundException;
-use Evrinoma\ArticleBundle\Dto\ClassifierApiDto;
 use Evrinoma\ArticleBundle\Dto\ClassifierApiDtoInterface;
 use Evrinoma\ArticleBundle\Exception\Classifier\ClassifierNotFoundException;
 use Evrinoma\ArticleBundle\Manager\Classifier\QueryManagerInterface;
@@ -25,11 +24,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ClassifierChoiceType extends AbstractType
 {
+    protected static string $dtoClass;
+
     private QueryManagerInterface $queryManager;
 
-    public function __construct(QueryManagerInterface $queryManager)
+    public function __construct(QueryManagerInterface $queryManager, string $dtoClass)
     {
         $this->queryManager = $queryManager;
+        static::$dtoClass = $dtoClass;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -38,7 +40,7 @@ class ClassifierChoiceType extends AbstractType
             $value = [];
             try {
                 if ($options->offsetExists('data')) {
-                    $criteria = $this->queryManager->criteria(new ClassifierApiDto());
+                    $criteria = $this->queryManager->criteria(new static::$dtoClass());
                     switch ($options->offsetGet('data')) {
                         case ClassifierApiDtoInterface::BRIEF:
                             foreach ($criteria as $entity) {

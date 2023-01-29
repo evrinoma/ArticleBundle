@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Evrinoma\ArticleBundle\Form\Rest\Type;
 
 use Doctrine\DBAL\Exception\TableNotFoundException;
-use Evrinoma\ArticleBundle\Dto\TypeApiDto;
 use Evrinoma\ArticleBundle\Dto\TypeApiDtoInterface;
 use Evrinoma\ArticleBundle\Exception\Type\TypeNotFoundException;
 use Evrinoma\ArticleBundle\Manager\Type\QueryManagerInterface;
@@ -25,11 +24,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TypeChoiceType extends AbstractType
 {
+    protected static string $dtoClass;
+
     private QueryManagerInterface $queryManager;
 
-    public function __construct(QueryManagerInterface $queryManager)
+    public function __construct(QueryManagerInterface $queryManager, string $dtoClass)
     {
         $this->queryManager = $queryManager;
+        static::$dtoClass = $dtoClass;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -38,7 +40,7 @@ class TypeChoiceType extends AbstractType
             $value = [];
             try {
                 if ($options->offsetExists('data')) {
-                    $criteria = $this->queryManager->criteria(new TypeApiDto());
+                    $criteria = $this->queryManager->criteria(new static::$dtoClass());
                     switch ($options->offsetGet('data')) {
                         case TypeApiDtoInterface::BRIEF:
                             foreach ($criteria as $entity) {
