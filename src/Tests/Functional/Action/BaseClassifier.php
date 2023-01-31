@@ -130,7 +130,7 @@ class BaseClassifier extends AbstractServiceTest implements BaseClassifierTestIn
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete(Id::empty());
+        $response = $this->delete(Id::blank());
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $response);
         $this->testResponseStatusUnprocessable();
     }
@@ -151,12 +151,12 @@ class BaseClassifier extends AbstractServiceTest implements BaseClassifierTestIn
         $this->testResponseStatusCreated();
         $this->checkResult($created);
 
-        $query = static::getDefault([ClassifierApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ClassifierApiDtoInterface::ID], ClassifierApiDtoInterface::DESCRIPTION => Description::empty()]);
+        $query = static::getDefault([ClassifierApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ClassifierApiDtoInterface::ID], ClassifierApiDtoInterface::DESCRIPTION => Description::blank()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([ClassifierApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ClassifierApiDtoInterface::ID], ClassifierApiDtoInterface::BRIEF => Brief::empty()]);
+        $query = static::getDefault([ClassifierApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ClassifierApiDtoInterface::ID], ClassifierApiDtoInterface::BRIEF => Brief::blank()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();

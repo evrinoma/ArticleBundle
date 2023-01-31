@@ -79,26 +79,45 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
 
     public function actionCriteriaNotFound(): void
     {
-        $find = $this->criteria([ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(), ArticleApiDtoInterface::ACTIVE => Active::wrong()]);
+        $find = $this->criteria([
+            ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            ArticleApiDtoInterface::ACTIVE => Active::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
 
-        $find = $this->criteria([ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(), ArticleApiDtoInterface::ID => Id::value(), ArticleApiDtoInterface::ACTIVE => Active::block(), ArticleApiDtoInterface::TITLE => Title::wrong()]);
+        $find = $this->criteria([
+            ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            ArticleApiDtoInterface::ID => Id::value(),
+            ArticleApiDtoInterface::ACTIVE => Active::block(),
+            ArticleApiDtoInterface::TITLE => Title::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
     }
 
     public function actionCriteria(): void
     {
-        $find = $this->criteria([ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(), ArticleApiDtoInterface::ACTIVE => Active::value(), ArticleApiDtoInterface::ID => Id::value()]);
+        $find = $this->criteria([
+            ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            ArticleApiDtoInterface::ACTIVE => Active::value(),
+            ArticleApiDtoInterface::ID => Id::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(), ArticleApiDtoInterface::ACTIVE => Active::delete()]);
+        $find = $this->criteria([
+            ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            ArticleApiDtoInterface::ACTIVE => Active::delete(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(3, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(), ArticleApiDtoInterface::ACTIVE => Active::delete(), ArticleApiDtoInterface::TITLE => Title::value()]);
+        $find = $this->criteria([
+            ArticleApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            ArticleApiDtoInterface::ACTIVE => Active::delete(),
+            ArticleApiDtoInterface::TITLE => Title::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(2, $find[PayloadModel::PAYLOAD]);
     }
@@ -119,7 +138,12 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
 
     public function actionPut(): void
     {
-        $query = static::getDefault([ArticleApiDtoInterface::ID => Id::value(), ArticleApiDtoInterface::TITLE => Title::value(), ArticleApiDtoInterface::BODY => Body::value(), ArticleApiDtoInterface::POSITION => Position::value()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => Id::value(),
+            ArticleApiDtoInterface::TITLE => Title::value(),
+            ArticleApiDtoInterface::BODY => Body::value(),
+            ArticleApiDtoInterface::POSITION => Position::value(),
+        ]);
 
         $find = $this->assertGet(Id::value());
 
@@ -157,7 +181,7 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete(Id::empty());
+        $response = $this->delete(Id::blank());
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $response);
         $this->testResponseStatusUnprocessable();
     }
@@ -179,40 +203,63 @@ class BaseArticle extends AbstractServiceTest implements BaseArticleTestInterfac
         $this->testResponseStatusCreated();
         $this->checkResult($created);
 
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::TITLE => Title::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::TITLE => Title::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::BODY => Body::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::BODY => Body::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::POSITION => Position::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::POSITION => Position::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][ArticleApiDtoInterface::IMAGE]);
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::IMAGE => Image::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         unset(static::$files[static::getDtoClass()][ArticleApiDtoInterface::PREVIEW]);
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::PREVIEW => Preview::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::PREVIEW => Preview::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::PREVIEW => Preview::empty(), ArticleApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::PREVIEW => Preview::blank(),
+            ArticleApiDtoInterface::IMAGE => Image::blank(),
+        ]);
         static::$files[static::getDtoClass()] = [];
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID], ArticleApiDtoInterface::PREVIEW => Preview::empty(), ArticleApiDtoInterface::IMAGE => Image::empty()]);
+        $query = static::getDefault([
+            ArticleApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][ArticleApiDtoInterface::ID],
+            ArticleApiDtoInterface::PREVIEW => Preview::blank(),
+            ArticleApiDtoInterface::IMAGE => Image::blank(),
+        ]);
         static::$files = [];
 
         $this->put($query);

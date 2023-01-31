@@ -130,7 +130,7 @@ class BaseType extends AbstractServiceTest implements BaseTypeTestInterface
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete(Id::empty());
+        $response = $this->delete(Id::blank());
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $response);
         $this->testResponseStatusUnprocessable();
     }
@@ -151,12 +151,12 @@ class BaseType extends AbstractServiceTest implements BaseTypeTestInterface
         $this->testResponseStatusCreated();
         $this->checkResult($created);
 
-        $query = static::getDefault([TypeApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][TypeApiDtoInterface::ID], TypeApiDtoInterface::DESCRIPTION => Description::empty()]);
+        $query = static::getDefault([TypeApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][TypeApiDtoInterface::ID], TypeApiDtoInterface::DESCRIPTION => Description::blank()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([TypeApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][TypeApiDtoInterface::ID], TypeApiDtoInterface::BRIEF => Brief::empty()]);
+        $query = static::getDefault([TypeApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][TypeApiDtoInterface::ID], TypeApiDtoInterface::BRIEF => Brief::blank()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
