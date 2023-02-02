@@ -124,7 +124,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
      */
     protected function create(ObjectManager $manager): self
     {
-        $short = self::getReferenceName();
+        $short = static::getReferenceName();
         $shortClassifier = ClassifierFixtures::getReferenceName();
         $shortType = TypeFixtures::getReferenceName();
         $i = 0;
