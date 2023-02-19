@@ -32,6 +32,6 @@ final class ClassifierApiControllerTest extends AbstractFunctionalTest
 
     public static function getFixtures(): array
     {
-        return [FixtureInterface::CLASSIFIER_FIXTURES];
+        return [FixtureInterface::ARTICLE_CLASSIFIER_FIXTURES];
     }
 }

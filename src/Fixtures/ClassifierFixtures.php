@@ -102,7 +102,7 @@ class ClassifierFixtures extends AbstractFixture implements FixtureGroupInterfac
     public static function getGroups(): array
     {
         return [
-            FixtureInterface::CLASSIFIER_FIXTURES, FixtureInterface::ARTICLE_FIXTURES,
+            FixtureInterface::ARTICLE_CLASSIFIER_FIXTURES, FixtureInterface::ARTICLE_FIXTURES,
         ];
     }
 

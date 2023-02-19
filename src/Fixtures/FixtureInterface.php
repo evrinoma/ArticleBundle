@@ -16,6 +16,6 @@ namespace Evrinoma\ArticleBundle\Fixtures;
 interface FixtureInterface
 {
     public const ARTICLE_FIXTURES = 'ARTICLE_FIXTURES';
-    public const CLASSIFIER_FIXTURES = 'CLASSIFIER_FIXTURES';
-    public const TYPE_FIXTURES = 'TYPE_FIXTURES';
+    public const ARTICLE_CLASSIFIER_FIXTURES = 'ARTICLE_CLASSIFIER_FIXTURES';
+    public const ARTICLE_TYPE_FIXTURES = 'ARTICLE_TYPE_FIXTURES';
 }

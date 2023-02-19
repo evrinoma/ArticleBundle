@@ -32,6 +32,6 @@ final class TypeApiControllerTest extends AbstractFunctionalTest
 
     public static function getFixtures(): array
     {
-        return [FixtureInterface::TYPE_FIXTURES];
+        return [FixtureInterface::ARTICLE_TYPE_FIXTURES];
     }
 }
