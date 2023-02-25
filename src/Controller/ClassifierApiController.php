@@ -96,6 +96,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         try {
             $this->facade->post($articleApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -144,6 +145,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         try {
             $this->facade->put($articleApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -193,6 +195,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         try {
             $this->facade->delete($articleApiDto, '', $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -263,6 +266,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         try {
             $this->facade->criteria($articleApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -311,6 +315,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         try {
             $this->facade->get($articleApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
