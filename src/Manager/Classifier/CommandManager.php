@@ -57,11 +57,11 @@ final class CommandManager implements CommandManagerInterface
      */
     public function post(ClassifierApiDtoInterface $dto): ClassifierInterface
     {
-        $article = $this->factory->create($dto);
+        $classifier = $this->factory->create($dto);
 
-        $this->mediator->onCreate($dto, $article);
+        $this->mediator->onCreate($dto, $classifier);
 
-        $errors = $this->validator->validate($article);
+        $errors = $this->validator->validate($classifier);
 
         if (\count($errors) > 0) {
             $errorsString = (string) $errors;
@@ -69,9 +69,9 @@ final class CommandManager implements CommandManagerInterface
             throw new ClassifierInvalidException($errorsString);
         }
 
-        $this->repository->save($article);
+        $this->repository->save($classifier);
 
-        return $article;
+        return $classifier;
     }
 
     /**
@@ -86,14 +86,14 @@ final class CommandManager implements CommandManagerInterface
     public function put(ClassifierApiDtoInterface $dto): ClassifierInterface
     {
         try {
-            $article = $this->repository->find($dto->idToString());
+            $classifier = $this->repository->find($dto->idToString());
         } catch (ClassifierNotFoundException $e) {
             throw $e;
         }
 
-        $this->mediator->onUpdate($dto, $article);
+        $this->mediator->onUpdate($dto, $classifier);
 
-        $errors = $this->validator->validate($article);
+        $errors = $this->validator->validate($classifier);
 
         if (\count($errors) > 0) {
             $errorsString = (string) $errors;
@@ -101,9 +101,9 @@ final class CommandManager implements CommandManagerInterface
             throw new ClassifierInvalidException($errorsString);
         }
 
-        $this->repository->save($article);
+        $this->repository->save($classifier);
 
-        return $article;
+        return $classifier;
     }
 
     /**
@@ -115,13 +115,13 @@ final class CommandManager implements CommandManagerInterface
     public function delete(ClassifierApiDtoInterface $dto): void
     {
         try {
-            $article = $this->repository->find($dto->idToString());
+            $classifier = $this->repository->find($dto->idToString());
         } catch (ClassifierNotFoundException $e) {
             throw $e;
         }
-        $this->mediator->onDelete($dto, $article);
+        $this->mediator->onDelete($dto, $classifier);
         try {
-            $this->repository->remove($article);
+            $this->repository->remove($classifier);
         } catch (ClassifierCannotBeRemovedException $e) {
             throw $e;
         }

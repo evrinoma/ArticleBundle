@@ -84,8 +84,8 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
      */
     public function postAction(): JsonResponse
     {
-        /** @var ClassifierApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var ClassifierApiDtoInterface $classifierApiDto */
+        $classifierApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $this->setStatusCreated();
 
@@ -94,7 +94,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         $group = GroupInterface::API_POST_ARTICLE_CLASSIFIER;
 
         try {
-            $this->facade->post($articleApiDto, $group, $json);
+            $this->facade->post($classifierApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -135,15 +135,15 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
      */
     public function putAction(): JsonResponse
     {
-        /** @var ClassifierApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var ClassifierApiDtoInterface $classifierApiDto */
+        $classifierApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
         $group = GroupInterface::API_PUT_ARTICLE_CLASSIFIER;
 
         try {
-            $this->facade->put($articleApiDto, $group, $json);
+            $this->facade->put($classifierApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -184,8 +184,8 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
      */
     public function deleteAction(): JsonResponse
     {
-        /** @var ClassifierApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var ClassifierApiDtoInterface $classifierApiDto */
+        $classifierApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $this->setStatusAccepted();
 
@@ -193,7 +193,7 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
         $error = [];
 
         try {
-            $this->facade->delete($articleApiDto, '', $json);
+            $this->facade->delete($classifierApiDto, '', $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -256,15 +256,15 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
      */
     public function criteriaAction(): JsonResponse
     {
-        /** @var ClassifierApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var ClassifierApiDtoInterface $classifierApiDto */
+        $classifierApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
         $group = GroupInterface::API_CRITERIA_ARTICLE_CLASSIFIER;
 
         try {
-            $this->facade->criteria($articleApiDto, $group, $json);
+            $this->facade->criteria($classifierApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -305,15 +305,15 @@ final class ClassifierApiController extends AbstractWrappedApiController impleme
      */
     public function getAction(): JsonResponse
     {
-        /** @var ClassifierApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var ClassifierApiDtoInterface $classifierApiDto */
+        $classifierApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
         $group = GroupInterface::API_GET_ARTICLE_CLASSIFIER;
 
         try {
-            $this->facade->get($articleApiDto, $group, $json);
+            $this->facade->get($classifierApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);

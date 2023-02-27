@@ -38,12 +38,12 @@ final class QueryManager implements QueryManagerInterface
     public function criteria(TypeApiDtoInterface $dto): array
     {
         try {
-            $article = $this->repository->findByCriteria($dto);
+            $type = $this->repository->findByCriteria($dto);
         } catch (TypeNotFoundException $e) {
             throw $e;
         }
 
-        return $article;
+        return $type;
     }
 
     /**
@@ -57,7 +57,7 @@ final class QueryManager implements QueryManagerInterface
     {
         try {
             if ($dto->hasId()) {
-                $article = $this->repository->proxy($dto->idToString());
+                $type = $this->repository->proxy($dto->idToString());
             } else {
                 throw new TypeProxyException('Id value is not set while trying get proxy object');
             }
@@ -65,7 +65,7 @@ final class QueryManager implements QueryManagerInterface
             throw $e;
         }
 
-        return $article;
+        return $type;
     }
 
     /**
@@ -78,11 +78,11 @@ final class QueryManager implements QueryManagerInterface
     public function get(TypeApiDtoInterface $dto): TypeInterface
     {
         try {
-            $article = $this->repository->find($dto->idToString());
+            $type = $this->repository->find($dto->idToString());
         } catch (TypeNotFoundException $e) {
             throw $e;
         }
 
-        return $article;
+        return $type;
     }
 }

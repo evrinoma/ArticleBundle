@@ -82,8 +82,8 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      */
     public function postAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var TypeApiDtoInterface $typeApiDto */
+        $typeApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $this->setStatusCreated();
 
@@ -92,7 +92,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
         $group = GroupInterface::API_POST_ARTICLE_TYPE;
 
         try {
-            $this->facade->post($articleApiDto, $group, $json);
+            $this->facade->post($typeApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -133,15 +133,15 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      */
     public function putAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var TypeApiDtoInterface $typeApiDto */
+        $typeApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
         $group = GroupInterface::API_PUT_ARTICLE_TYPE;
 
         try {
-            $this->facade->put($articleApiDto, $group, $json);
+            $this->facade->put($typeApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -182,8 +182,8 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      */
     public function deleteAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var TypeApiDtoInterface $typeApiDto */
+        $typeApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $this->setStatusAccepted();
 
@@ -191,7 +191,7 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
         $error = [];
 
         try {
-            $this->facade->delete($articleApiDto, '', $json);
+            $this->facade->delete($typeApiDto, '', $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -254,15 +254,15 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      */
     public function criteriaAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var TypeApiDtoInterface $typeApiDto */
+        $typeApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
         $group = GroupInterface::API_CRITERIA_ARTICLE_TYPE;
 
         try {
-            $this->facade->criteria($articleApiDto, $group, $json);
+            $this->facade->criteria($typeApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);
@@ -303,15 +303,15 @@ final class TypeApiController extends AbstractWrappedApiController implements Ap
      */
     public function getAction(): JsonResponse
     {
-        /** @var TypeApiDtoInterface $articleApiDto */
-        $articleApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        /** @var TypeApiDtoInterface $typeApiDto */
+        $typeApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
         $json = [];
         $error = [];
         $group = GroupInterface::API_GET_ARTICLE_TYPE;
 
         try {
-            $this->facade->get($articleApiDto, $group, $json);
+            $this->facade->get($typeApiDto, $group, $json);
         } catch (\Exception $e) {
             $json = [];
             $error = $this->setRestStatus($e);

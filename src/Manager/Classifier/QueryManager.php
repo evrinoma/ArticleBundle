@@ -38,12 +38,12 @@ final class QueryManager implements QueryManagerInterface
     public function criteria(ClassifierApiDtoInterface $dto): array
     {
         try {
-            $article = $this->repository->findByCriteria($dto);
+            $classifier = $this->repository->findByCriteria($dto);
         } catch (ClassifierNotFoundException $e) {
             throw $e;
         }
 
-        return $article;
+        return $classifier;
     }
 
     /**
@@ -57,7 +57,7 @@ final class QueryManager implements QueryManagerInterface
     {
         try {
             if ($dto->hasId()) {
-                $article = $this->repository->proxy($dto->idToString());
+                $classifier = $this->repository->proxy($dto->idToString());
             } else {
                 throw new ClassifierProxyException('Id value is not set while trying get proxy object');
             }
@@ -65,7 +65,7 @@ final class QueryManager implements QueryManagerInterface
             throw $e;
         }
 
-        return $article;
+        return $classifier;
     }
 
     /**
@@ -78,11 +78,11 @@ final class QueryManager implements QueryManagerInterface
     public function get(ClassifierApiDtoInterface $dto): ClassifierInterface
     {
         try {
-            $article = $this->repository->find($dto->idToString());
+            $classifier = $this->repository->find($dto->idToString());
         } catch (ClassifierNotFoundException $e) {
             throw $e;
         }
 
-        return $article;
+        return $classifier;
     }
 }

@@ -57,11 +57,11 @@ final class CommandManager implements CommandManagerInterface
      */
     public function post(TypeApiDtoInterface $dto): TypeInterface
     {
-        $article = $this->factory->create($dto);
+        $type = $this->factory->create($dto);
 
-        $this->mediator->onCreate($dto, $article);
+        $this->mediator->onCreate($dto, $type);
 
-        $errors = $this->validator->validate($article);
+        $errors = $this->validator->validate($type);
 
         if (\count($errors) > 0) {
             $errorsString = (string) $errors;
@@ -69,9 +69,9 @@ final class CommandManager implements CommandManagerInterface
             throw new TypeInvalidException($errorsString);
         }
 
-        $this->repository->save($article);
+        $this->repository->save($type);
 
-        return $article;
+        return $type;
     }
 
     /**
@@ -86,14 +86,14 @@ final class CommandManager implements CommandManagerInterface
     public function put(TypeApiDtoInterface $dto): TypeInterface
     {
         try {
-            $article = $this->repository->find($dto->idToString());
+            $type = $this->repository->find($dto->idToString());
         } catch (TypeNotFoundException $e) {
             throw $e;
         }
 
-        $this->mediator->onUpdate($dto, $article);
+        $this->mediator->onUpdate($dto, $type);
 
-        $errors = $this->validator->validate($article);
+        $errors = $this->validator->validate($type);
 
         if (\count($errors) > 0) {
             $errorsString = (string) $errors;
@@ -101,9 +101,9 @@ final class CommandManager implements CommandManagerInterface
             throw new TypeInvalidException($errorsString);
         }
 
-        $this->repository->save($article);
+        $this->repository->save($type);
 
-        return $article;
+        return $type;
     }
 
     /**
@@ -115,13 +115,13 @@ final class CommandManager implements CommandManagerInterface
     public function delete(TypeApiDtoInterface $dto): void
     {
         try {
-            $article = $this->repository->find($dto->idToString());
+            $type = $this->repository->find($dto->idToString());
         } catch (TypeNotFoundException $e) {
             throw $e;
         }
-        $this->mediator->onDelete($dto, $article);
+        $this->mediator->onDelete($dto, $type);
         try {
-            $this->repository->remove($article);
+            $this->repository->remove($type);
         } catch (TypeCannotBeRemovedException $e) {
             throw $e;
         }
