@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class ClassifierPass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const CLASSIFIER_CONSTRAINT = 'evrinoma.article.constraint.classifier.property';
+    public const CLASSIFIER_CONSTRAINT = 'evrinoma.article.constraint.property.classifier';
 
     protected static string $alias = self::CLASSIFIER_CONSTRAINT;
     protected static string $class = ClassifierValidator::class;

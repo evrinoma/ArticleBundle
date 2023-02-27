@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class TypePass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const TYPE_CONSTRAINT = 'evrinoma.article.constraint.type.property';
+    public const TYPE_CONSTRAINT = 'evrinoma.article.constraint.property.type';
 
     protected static string $alias = self::TYPE_CONSTRAINT;
     protected static string $class = TypeValidator::class;

@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 class ArticlePass extends AbstractConstraint implements CompilerPassInterface
 {
-    public const ARTICLE_CONSTRAINT = 'evrinoma.article.constraint.article.property';
+    public const ARTICLE_CONSTRAINT = 'evrinoma.article.constraint.property.article';
 
     protected static string $alias = self::ARTICLE_CONSTRAINT;
     protected static string $class = ArticleValidator::class;
