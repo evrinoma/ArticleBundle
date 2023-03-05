@@ -23,43 +23,43 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 class TypeFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
     protected static array $data = [
-        [
+        0 => [
             TypeApiDtoInterface::BRIEF => 'ite',
             TypeApiDtoInterface::DESCRIPTION => 'description ite',
             TypeApiDtoInterface::ACTIVE => 'a',
             'created_at' => '2008-10-23 10:21:50',
         ],
-        [
+        1 => [
             TypeApiDtoInterface::BRIEF => 'kzkt',
             TypeApiDtoInterface::DESCRIPTION => 'description kzkt',
             TypeApiDtoInterface::ACTIVE => 'a',
             'created_at' => '2015-10-23 10:21:50',
         ],
-        [
+        2 => [
             TypeApiDtoInterface::BRIEF => 'c2m',
             TypeApiDtoInterface::DESCRIPTION => 'description c2m',
             TypeApiDtoInterface::ACTIVE => 'a',
             'created_at' => '2020-10-23 10:21:50',
         ],
-        [
+        3 => [
             TypeApiDtoInterface::BRIEF => 'kzkt2',
             TypeApiDtoInterface::DESCRIPTION => 'description kzkt2',
             TypeApiDtoInterface::ACTIVE => 'd',
             'created_at' => '2015-10-23 10:21:50',
             ],
-        [
+        4 => [
             TypeApiDtoInterface::BRIEF => 'nvr',
             TypeApiDtoInterface::DESCRIPTION => 'description nvr',
             TypeApiDtoInterface::ACTIVE => 'b',
             'created_at' => '2010-10-23 10:21:50',
         ],
-        [
+        5 => [
             TypeApiDtoInterface::BRIEF => 'nvr2',
             TypeApiDtoInterface::DESCRIPTION => 'description nvr2',
             TypeApiDtoInterface::ACTIVE => 'd',
             'created_at' => '2010-10-23 10:21:50',
             ],
-        [
+        6 => [
             TypeApiDtoInterface::BRIEF => 'nvr3',
             TypeApiDtoInterface::DESCRIPTION => 'description nvr3',
             TypeApiDtoInterface::ACTIVE => 'd',

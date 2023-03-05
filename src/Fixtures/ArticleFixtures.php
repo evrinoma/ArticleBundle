@@ -23,7 +23,7 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
     protected static array $data = [
-        [
+        0 => [
             ArticleApiDtoInterface::TITLE => 'ite',
             ArticleApiDtoInterface::BODY => 'http://ite',
             ArticleApiDtoInterface::POSITION => 1,
@@ -36,7 +36,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::TYPE => 1,
             ArticleApiDtoInterface::CLASSIFIER => 2,
         ],
-        [
+        1 => [
             ArticleApiDtoInterface::TITLE => 'kzkt',
             ArticleApiDtoInterface::BODY => 'http://kzkt',
             ArticleApiDtoInterface::POSITION => 2,
@@ -48,7 +48,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::TYPE => 2,
             ArticleApiDtoInterface::CLASSIFIER => 3,
         ],
-        [
+        2 => [
             ArticleApiDtoInterface::TITLE => 'c2m',
             ArticleApiDtoInterface::BODY => 'http://c2m',
             ArticleApiDtoInterface::POSITION => 3,
@@ -61,7 +61,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::TYPE => 4,
             ArticleApiDtoInterface::CLASSIFIER => 5,
         ],
-        [
+        3 => [
             ArticleApiDtoInterface::TITLE => 'kzkt2',
             ArticleApiDtoInterface::BODY => 'http://kzkt2',
             ArticleApiDtoInterface::POSITION => 1,
@@ -73,7 +73,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::TYPE => 5,
             ArticleApiDtoInterface::CLASSIFIER => 6,
         ],
-        [
+        4 => [
             ArticleApiDtoInterface::TITLE => 'nvr',
             ArticleApiDtoInterface::BODY => 'http://nvr',
             ArticleApiDtoInterface::POSITION => 2,
@@ -86,7 +86,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::TYPE => 6,
             ArticleApiDtoInterface::CLASSIFIER => 5,
         ],
-        [
+        5 => [
             ArticleApiDtoInterface::TITLE => 'nvr2',
             ArticleApiDtoInterface::BODY => 'http://nvr2',
             ArticleApiDtoInterface::POSITION => 3,
@@ -98,7 +98,7 @@ class ArticleFixtures extends AbstractFixture implements FixtureGroupInterface, 
             ArticleApiDtoInterface::TYPE => 5,
             ArticleApiDtoInterface::CLASSIFIER => 4,
         ],
-        [
+        6 => [
             ArticleApiDtoInterface::TITLE => 'nvr3',
             ArticleApiDtoInterface::BODY => 'http://nvr3',
             ArticleApiDtoInterface::POSITION => 1,

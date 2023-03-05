@@ -23,43 +23,43 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 class ClassifierFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
     protected static array $data = [
-        [
+        0 => [
             ClassifierApiDtoInterface::BRIEF => 'ite',
             ClassifierApiDtoInterface::DESCRIPTION => 'description ite',
             ClassifierApiDtoInterface::ACTIVE => 'a',
             'created_at' => '2008-10-23 10:21:50',
         ],
-        [
+        1 => [
             ClassifierApiDtoInterface::BRIEF => 'kzkt',
             ClassifierApiDtoInterface::DESCRIPTION => 'description kzkt',
             ClassifierApiDtoInterface::ACTIVE => 'a',
             'created_at' => '2015-10-23 10:21:50',
         ],
-        [
+        2 => [
             ClassifierApiDtoInterface::BRIEF => 'c2m',
             ClassifierApiDtoInterface::DESCRIPTION => 'description c2m',
             ClassifierApiDtoInterface::ACTIVE => 'a',
             'created_at' => '2020-10-23 10:21:50',
         ],
-        [
+        3 => [
             ClassifierApiDtoInterface::BRIEF => 'kzkt2',
             ClassifierApiDtoInterface::DESCRIPTION => 'description kzkt2',
             ClassifierApiDtoInterface::ACTIVE => 'd',
             'created_at' => '2015-10-23 10:21:50',
-            ],
-        [
+        ],
+        4 => [
             ClassifierApiDtoInterface::BRIEF => 'nvr',
             ClassifierApiDtoInterface::DESCRIPTION => 'description nvr',
             ClassifierApiDtoInterface::ACTIVE => 'b',
             'created_at' => '2010-10-23 10:21:50',
         ],
-        [
+        5 => [
             ClassifierApiDtoInterface::BRIEF => 'nvr2',
             ClassifierApiDtoInterface::DESCRIPTION => 'description nvr2',
             ClassifierApiDtoInterface::ACTIVE => 'd',
             'created_at' => '2010-10-23 10:21:50',
-            ],
-        [
+        ],
+        6 => [
             ClassifierApiDtoInterface::BRIEF => 'nvr3',
             ClassifierApiDtoInterface::DESCRIPTION => 'description nvr3',
             ClassifierApiDtoInterface::ACTIVE => 'd',
